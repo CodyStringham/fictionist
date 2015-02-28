@@ -12,10 +12,22 @@ Dir.chdir APP_ROOT do
   system "gem install bundler --conservative"
   system "bundle check || bundle install"
 
-  # puts "\n== Copying sample files =="
-  # unless File.exist?("config/database.yml")
-  #   system "cp config/database.yml.sample config/database.yml"
-  # end
+  puts "\n== Copying sample files =="
+  unless File.exist?("config/database.yml")
+    system "cp config/database.example.yml config/database.yml"
+    puts "Update your postgres username in the database.yml file"
+    abort "make this change and run the setup file again"
+  end
+
+  unless File.exist?("config/application.yml")
+    system "cp config/application.example.yml config/application.yml"
+    puts "Add a Devise Secret and a Secret Token in your application.yml file."
+    puts "Token 1:"
+    system "rake secret"
+    puts "Token 2:"
+    system "rake secret"
+    abort "make this change and run the setup file again"
+  end
 
   puts "\n== Preparing database =="
   system "bin/rake db:setup"
