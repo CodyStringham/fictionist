@@ -1,0 +1,19 @@
+login: &login
+  username:
+  password:
+  adapter:  postgresql
+  encoding: unicode
+  host:     localhost
+  pool:     10
+
+development:
+  database: fictionist_development
+  <<: *login
+
+test:
+  database: fictionist_test
+  <<: *login
+
+production:
+  database: fictionist_production
+  <<: *login

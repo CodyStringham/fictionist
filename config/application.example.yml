@@ -1,0 +1,17 @@
+SECRET_TOKEN:
+DEVISE_SECRET:
+DEFAULT_EMAIL_FROM:               test@test.com
+DOMAIN_NAME:                      ficionist.dev
+ADMIN_EMAIL:                      test@test.com
+ADMIN_PASSWORD:                   '12345678'
+ADMIN_NAME:                       test admin
+
+# production:
+#   DEFAULT_EMAIL_FROM:
+#   SECRET_TOKEN:
+#   DEVISE_SECRET:
+#   DOMAIN_NAME:
+#   RACK_ENV:                       production
+#   RAILS_ENV:                      production
+#   EMAIL_USERNAME:
+#   EMAIL_PASSWORD:
