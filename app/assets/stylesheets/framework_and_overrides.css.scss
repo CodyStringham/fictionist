@@ -40,7 +40,6 @@
 // to make views framework-neutral
 main {
   @include twelve-columns;
-  background-color: #eee;
   }
 section {
   @extend .row;
@@ -54,10 +53,6 @@ section {
   padding-top: 30px;
   max-width: 320px;
   margin: 0 auto;
-}
-.authform form {
-  @include panel();
-  padding-bottom: 60px;
 }
 .authform form a {
   font-size: rem-calc(13);

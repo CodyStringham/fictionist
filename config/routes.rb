@@ -10,5 +10,6 @@ Rails.application.routes.draw do
               }
   resources :users
 
-  root to: 'visitors#index'
+  root to: 'visitors#sign_in'
+  get '/welcome', to: 'visitors#index', as: :welcome
 end

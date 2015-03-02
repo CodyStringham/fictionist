@@ -1,9 +1,3 @@
-$red:            #e54729;
-$sky-blue:       invert($red);
-$blue:           #002e62;
-$yellow:         #ffcc00;
-$green:          lighten(#55a602,8.5%);
-
 $black:          #000;
 $white:          #fff;
 $mid-tone:       #9ea7ad;
@@ -12,9 +6,8 @@ $light-tone:     lighten($mid-tone, 15%);
 $dark-tone:      darken($mid-tone, 30%);
 $darker-tone:    darken($mid-tone, 45%);
 
-
-$primary-color: #008CBA !default;   // bondi-blue
-$secondary-color: #e7e7e7 !default; // white-lilac
+$primary-color: $black !default;   // bondi-blue
+$secondary-color: $mid-tone !default; // white-lilac
 $alert-color: #f04124 !default;     // cinnabar
 $success-color: #43AC6A !default;   // sea-green
 $warning-color: #f08a24 !default;   // carrot
@@ -39,3 +32,9 @@ $tuatara       : #444444 !default;
 $oil           : #333333 !default;
 $jet           : #222222 !default;
 $black         : #000000 !default;
+
+$red:            #e54729;
+$sky-blue:       invert($red);
+$blue:           #002e62;
+$yellow:         #ffcc00;
+$green:          lighten(#55a602,8.5%);

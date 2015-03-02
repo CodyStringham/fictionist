@@ -10,7 +10,10 @@
     = csrf_meta_tags
   %body
     %header
-      = render 'layouts/navigation'
+      - unless params['controller'] == 'visitors' && params['action'] == 'sign_in'
+        = render 'layouts/navigation'
+    = render 'layouts/messages'
     %main{:role => "main"}
-      = render 'layouts/messages'
       = yield
+      - if Rails.env.development?
+        .web-console-fix
