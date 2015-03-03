@@ -1,50 +1,18 @@
 // import the CSS framework
 @import "foundation";
 
-// override for the 'Home' navigation link
-.top-bar .name {
-  font-size: rem-calc(13);
-  line-height: 45px; }
-.top-bar .name a {
-  font-weight: normal;
-  color: white;
-  padding: 0 15px; }
-
-// THESE ARE EXAMPLES YOU CAN MODIFY
-// create mixins using Foundation classes
-@mixin twelve-columns {
-  @extend .small-12;
-  @extend .columns;
+.top-bar {
+  background: black;
+  &.expanded ul.title-area {
+    background: black;
   }
-@mixin six-columns-centered {
-  @extend .small-6;
-  @extend .columns;
-  @extend .text-center;
+  .top-bar-section li:not(.has-form) a:not(.button):not(.button-xs) {
+    background: black;
+    &:hover {
+      background: lighten(black, 20%);
+    }
   }
-// create your own classes
-// to make views framework-neutral
-.column {
-  @include six-columns-centered;
-  }
-.form {
-  @include grid-column(6);
-  }
-.form-centered {
-  @include six-columns-centered;
-  }
-.submit {
-  @extend .button;
-  @extend .radius;
-  }
-// apply styles to HTML elements
-// to make views framework-neutral
-main {
-  @include twelve-columns;
-  }
-section {
-  @extend .row;
-  margin-top: 20px;
-  }
+}
 
 // Styles for form views
 // using Foundation
@@ -60,26 +28,28 @@ section {
 .authform form p {
   font-size: rem-calc(13);
 }
-.authform .form-group {
-  // for Bootstrap, not used for Foundation
-}
-.authform .form-control {
-  // for Bootstrap, not used for Foundation
-}
-.authform .checkbox {
-  // for Bootstrap, not used for Foundation
-}
+
 .authform fieldset {
   @include panel();
 }
+
 .authform #error_explanation {
-  @extend .alert-box;
-  @extend .alert;
+  border: 5px solid #f04124;
+  color: #f04124;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  h2 {
+    font-size: rem-calc(16);
+    color: #f04124;
+    font-weight: 800;
+  }
+  ul {
+    margin-bottom: 0;
+  }
+  // @extend .alert-box;
+  // @extend .alert;
 }
-.authform #error_explanation h2 {
-  font-size: rem-calc(16);
-  color: white;
-}
+
 .button-xs {
   @extend .button;
   @extend .radius;
