@@ -1,10 +1,16 @@
 SECRET_TOKEN:
 DEVISE_SECRET:
 DEFAULT_EMAIL_FROM:               test@test.com
-DOMAIN_NAME:                      ficionist.dev
+DOMAIN_NAME:                      fictionist.dev
 ADMIN_EMAIL:                      test@test.com
 ADMIN_PASSWORD:                   '12345678'
 ADMIN_NAME:                       test admin
+
+TWITTER_KEY:
+TWITTER_SECRET:
+FACEBOOK_KEY:
+FACEBOOK_SECRET:
+
 
 # production:
 #   DEFAULT_EMAIL_FROM:

@@ -1,0 +1,21 @@
+.authform
+  %h3 Register With:
+  .margin-bottom-40
+    = link_to "Twitter", user_omniauth_authorize_path('twitter'), class: 'f-btn-primary margin-right-10'
+    = link_to "Facebook", user_omniauth_authorize_path('facebook'), class: 'f-btn-primary'
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+    %h3 Or Sign up
+    = devise_error_messages!
+    .form-group
+      = f.label :name
+      = f.text_field :name, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: 'form-control'
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, class: 'form-control'
+    = f.submit 'Sign up', :class => 'f-btn-primary right'
