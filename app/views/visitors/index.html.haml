@@ -4,8 +4,17 @@
 
 
     %p.margin-top-40
+      We want to keep this as simple as possible. Use black and white for now, alert and success colors are acceptable for flashes.
+
+    %p.margin-top-40
       Buttons use the
       %code
         f-btn-primary
       class
       = link_to "button", root_path, class: 'f-btn-primary margin-left-20'
+    %p
+      and you can add a
+      %code
+        small
+      class
+      = link_to "button", root_path, class: 'f-btn-primary small margin-left-20'

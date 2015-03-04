@@ -1,8 +1,12 @@
 .container
-  .row
-    %h3 Users
+  .row.text-center
+    %h3.margin-vertical-40 Users
     .column
       %table.table
+        %thead
+          %tr
+            %th User Email
+            %th{:colspan => 4} User Role
         %tbody
           - @users.each do |user|
             %tr= render user

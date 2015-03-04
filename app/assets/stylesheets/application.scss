@@ -11,11 +11,19 @@
   border: 5px solid black;
   background: transparent;
   color: black;
+  font-size: 1rem;
   font-weight: 800;
   transition: color 300ms ease-out;
   transition: background-color 300ms ease-out;
   padding: 0.5rem 2rem 0.5625rem;
   min-width: 150px;
+  line-height: 18px;
+  &.small {
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 90px;
+    padding: 0.25rem 1rem 0.2125rem;
+  }
   &:hover, &:focus {
     background: black;
     color: white;
