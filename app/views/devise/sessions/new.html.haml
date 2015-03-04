@@ -1,4 +1,8 @@
 .authform
+  %h3 Sign In With:
+  .margin-bottom-40
+    = link_to "Twitter", user_omniauth_authorize_path('twitter'), class: 'f-btn-primary margin-right-10'
+    = link_to "Facebook", user_omniauth_authorize_path('facebook'), class: 'f-btn-primary'
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
     %h3 Sign in
     = devise_error_messages!
