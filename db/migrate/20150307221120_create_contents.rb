@@ -1,8 +1,8 @@
 class CreateContents < ActiveRecord::Migration
   def change
     create_table :contents do |t|
-      t.string :content_type
-      t.string :message
+      t.string :content_type, null: false
+      t.string :message, null: false
       t.string :location
       t.datetime :published_at
       t.integer :view_permission

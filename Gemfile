@@ -29,7 +29,7 @@ gem 'simple_form'
 gem 'figaro'
 gem 'friendly_id'
 # gem 'cocoon'
-# gem 'paperclip'
+gem 'paperclip'
 
 group :development do
   gem 'letter_opener'
