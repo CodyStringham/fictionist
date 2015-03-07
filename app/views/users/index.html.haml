@@ -1,12 +1,30 @@
 .container
   .row.text-center
-    %h3.margin-vertical-40 Users
-    .column
-      %table.table
-        %thead
-          %tr
-            %th User Email
-            %th{:colspan => 4} User Role
-        %tbody
-          - @users.each do |user|
-            %tr= render user
+    %h3.margin-vertical-40 Invite a User
+    = form_for @new_user, url: invite_blah_path do |f|
+      .row
+        .medium-5.columns
+          .row.collapse
+            .small-3.large-2.columns
+              = f.label :name, class: 'prefix'
+            .small-9.large-10.columns
+              = f.text_field :name
+        .medium-5.columns
+          .row.collapse
+            .small-3.large-2.columns
+              = f.label :email, class: 'prefix'
+            .small-9.large-10.columns
+              = f.text_field :email
+        .medium-2.columns
+          = f.submit 'Send Invitation', class: 'f-btn-primary small'
+
+  .row.text-center
+    %h3.margin-vertical-40 Listing Users
+    %table.table
+      %thead
+        %tr
+          %th User Email
+          %th{:colspan => 4} User Role
+      %tbody
+        - @users.each do |user|
+          %tr= render user

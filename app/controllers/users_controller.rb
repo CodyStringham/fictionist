@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @new_user = User.new
   end
 
   def show
@@ -60,6 +61,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite_new_user
+    user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+    redirect_to root_path, notice: "user was invited"
+  end
+
   private
 
   def admin_only
@@ -78,7 +84,9 @@ class UsersController < ApplicationController
 
   def user_params
     accessible = [ :name, :email ] # extend with your own params
+    accessible << [ :role ] if current_user.admin?
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
     params.require(:user).permit(accessible)
   end
+
 end
