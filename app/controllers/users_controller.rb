@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_only, :only => [:index]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :add_points]
 
   def index
     @users = User.all
@@ -51,6 +51,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_points
+    if @user.update_attribute( :points, @user.points += params[:points][:value].to_i )
+      redirect_to users_path, notice: 'Points were successfully added!'
+    else
+      redirect_to users_path, alert: 'Something went wrong, sorry.'
+    end
+  end
+
   # DELETE /users/:id.:format
   def destroy
     # authorize! :delete, @user
@@ -81,7 +89,7 @@ class UsersController < ApplicationController
   def user_params
     accessible = [ :name, :email ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-    accessible << :role  if current_user.admin?
+    accessible << [ :role, :points ] if current_user.admin?
     params.require(:user).permit(accessible)
   end
 

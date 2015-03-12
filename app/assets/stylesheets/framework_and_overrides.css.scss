@@ -32,6 +32,9 @@
 
 table.table {
   width: 100%;
+  select {
+    max-width: 200px;
+  }
 }
 
 .authform #error_explanation {

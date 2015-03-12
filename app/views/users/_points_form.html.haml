@@ -1,0 +1,15 @@
+%h2 Add Points
+
+= form_for :points, url: add_points_path(user.id) do |f| #edit_points_path
+  .row
+    .small-8.columns
+      .row.collapse
+        .small-3.large-2.columns
+          = f.label :value, class: 'prefix'
+        .small-9.large-10.columns
+          = f.text_field :value
+    .small-4.columns
+      .text-right
+        = f.submit "add", class: 'f-btn-primary small'
+
+%a.close-reveal-modal &#215;
