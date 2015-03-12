@@ -10,7 +10,7 @@ Rails.application.routes.draw do
                 password: 'password',
               }
   resources :users
-  post '/users/:id/add_points', to: 'users#add_points', as: :add_points
+  post '/users/:id/update_points', to: 'users#update_points', as: :update_points
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 

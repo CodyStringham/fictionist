@@ -2,17 +2,25 @@
   = link_to user do
     %span
       = user.email
-      .text-right
-        %b Points:
-        = number_with_delimiter(user.points)
 %td
   = form_for(user) do |f|
     = f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { class: 'margin-bottom-0' })
     = f.submit 'Update', :class => 'f-btn-primary small'
 %td
-  .text-right
-    = link_to("Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'f-btn-primary small') unless user == current_user
-    %a.f-btn-primary.small{"data-reveal-id" => "myModal", :href => "#"} Points
+  %a.f-btn-primary.icon{"data-reveal-id" => "removePointModal", :href => "#"}
+    .fa.fa-minus
+  %a.f-btn-primary.icon{"data-reveal-id" => "addPointModal", :href => "#"}
+    .fa.fa-plus
+  %b Points:
+  = number_with_delimiter(user.points)
+%td
+  - unless user == current_user
+    = link_to user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'f-btn-primary icon right'  do
+      .fa.fa-trash
 
-#myModal.reveal-modal{"data-reveal" => ""}
-  = render 'points_form', user: user
+
+#addPointModal.reveal-modal{"data-reveal" => ""}
+  = render 'points_form', user: user, point_action: 'add_points'
+
+#removePointModal.reveal-modal{"data-reveal" => ""}
+  = render 'points_form', user: user, point_action: 'remove_points'

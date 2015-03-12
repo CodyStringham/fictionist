@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_only, :only => [:index]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :add_points]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :update_points]
 
   def index
     @users = User.all
@@ -51,9 +51,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_points
-    if @user.update_attribute( :points, @user.points += params[:points][:value].to_i )
-      redirect_to users_path, notice: 'Points were successfully added!'
+  def update_points
+    if params[:points][:point_action] == 'add_points'
+      update_code = @user.points += params[:points][:points].to_i
+    else
+      update_code = @user.points -= params[:points][:points].to_i
+    end
+
+    if @user.update_attribute( :points, update_code )
+      redirect_to users_path, notice: 'Points were successfully updated!'
     else
       redirect_to users_path, alert: 'Something went wrong, sorry.'
     end
@@ -89,7 +95,7 @@ class UsersController < ApplicationController
   def user_params
     accessible = [ :name, :email ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-    accessible << [ :role, :points ] if current_user.admin?
+    accessible << [ :role, :points, :point_action ] if current_user.admin?
     params.require(:user).permit(accessible)
   end
 

@@ -1,15 +1,17 @@
-%h2 Add Points
+%h2= point_action == 'add_points' ? 'Add' : 'Remove' + ' Points'
 
-= form_for :points, url: add_points_path(user.id) do |f| #edit_points_path
+= form_for :points, url: update_points_path(user.id) do |f| #edit_points_path
+  .hided
+    = f.text_field :point_action, value: "#{ point_action == 'add_points' ? 'add_points' : 'remove_points'}"
   .row
     .small-8.columns
       .row.collapse
         .small-3.large-2.columns
-          = f.label :value, class: 'prefix'
+          = f.label :points, class: 'prefix'
         .small-9.large-10.columns
-          = f.text_field :value
+          = f.text_field :points
     .small-4.columns
       .text-right
-        = f.submit "add", class: 'f-btn-primary small'
+        = f.submit "#{ point_action == 'add_points' ? 'Add' : 'Remove'}", class: 'f-btn-primary small'
 
 %a.close-reveal-modal &#215;
