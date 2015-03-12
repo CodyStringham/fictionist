@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308000259) do
+ActiveRecord::Schema.define(version: 20150312020356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20150308000259) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "redemptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "redemptions", ["content_id"], name: "index_redemptions_on_content_id", using: :btree
+  add_index "redemptions", ["user_id"], name: "index_redemptions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: ""
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150308000259) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.integer  "points",                 default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -80,4 +91,6 @@ ActiveRecord::Schema.define(version: 20150308000259) do
 
   add_foreign_key "contents", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "redemptions", "contents"
+  add_foreign_key "redemptions", "users"
 end

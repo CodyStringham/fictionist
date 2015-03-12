@@ -74,18 +74,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def secure_params
-    params.require(:user).permit(:role)
-  end
-
   def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
     accessible = [ :name, :email ] # extend with your own params
-    accessible << [ :role ] if current_user.admin?
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+    accessible << :role  if current_user.admin?
     params.require(:user).permit(accessible)
   end
 

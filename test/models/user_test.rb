@@ -37,4 +37,5 @@ end
 #  invited_by_id          :integer
 #  invited_by_type        :string
 #  invitations_count      :integer          default("0")
+#  points                 :integer
 #

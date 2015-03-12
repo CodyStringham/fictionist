@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  
+
   has_one :identity, dependent: :destroy
   has_many :contents
 
@@ -97,4 +97,4 @@ end
 #  invited_by_id          :integer
 #  invited_by_type        :string
 #  invitations_count      :integer          default("0")
-#
+#  points                 :integer

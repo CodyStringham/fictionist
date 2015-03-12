@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root to: 'visitors#sign_in'
   get '/welcome', to: 'visitors#index', as: :welcome
 
-  post '/new-user', to: 'users#invite_new_user', as: :invite_blah
+  post '/new-user', to: 'users#invite_new_user', as: :invite
 end
 
 # == Route Map
