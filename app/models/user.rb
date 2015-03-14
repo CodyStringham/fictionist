@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  validates :points, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :points, numericality: { greater_than_or_equal_to: 0 }
 
-  enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: [:user, :band_member, :admin]
+  after_initialize :set_default_role, if: :new_record?
 
   has_one :identity, dependent: :destroy
   has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
       # user to verify it on the next step via UsersController.finish_signup
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
       email = auth.info.email if email_is_verified
-      user = User.where(:email => email).first if email
+      user = User.where(email: email).first if email
 
       # Create the user if it's a new registration
       if user.nil?
@@ -85,16 +85,20 @@ class User < ActiveRecord::Base
     # devise_invitable invite! method overriden
     def invite!
       super
-      self.confirmed_at = nil
-      self.save
+      self.update_attributes(confirmed_at: nil)
     end
 
   private
 
   def reward_inviter
-    inviter = User.find self.invited_by_id
-    inviter.points += 50
-    inviter.save
+    if self.invited_by_id
+      begin
+        inviter = User.find self.invited_by_id
+        inviter.update_attributes(points: inviter.points + 50)
+      rescue ActiveRecord::RecordNotFound
+        logger.debug "inviter not found"
+      end
+    end
   end
 
 end
