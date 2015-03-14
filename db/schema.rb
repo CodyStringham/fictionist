@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312020356) do
+ActiveRecord::Schema.define(version: 20150314204816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,16 +22,15 @@ ActiveRecord::Schema.define(version: 20150312020356) do
     t.string   "location"
     t.datetime "published_at"
     t.integer  "view_permission"
-    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.integer  "uploader_id"
+    t.integer  "value"
   end
-
-  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150312020356) do
     t.integer  "content_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "value"
   end
 
   add_index "redemptions", ["content_id"], name: "index_redemptions_on_content_id", using: :btree
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20150312020356) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "contents", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "redemptions", "contents"
   add_foreign_key "redemptions", "users"

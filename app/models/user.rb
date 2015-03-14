@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   has_one :identity, dependent: :destroy
-  has_many :contents
+  has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
+
+  has_many :redemptions
+  has_many :purchased_contents, through: :redemptions, class_name: "Content", source: :content
 
   def set_default_role
     self.role ||= :user
