@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
+  validates :points, :numericality => { :greater_than_or_equal_to => 0 }
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -64,6 +66,34 @@ class User < ActiveRecord::Base
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
+
+    # devise confirm! method overriden
+    def confirm!
+      reward_inviter
+      super
+    end
+
+    # devise_invitable accept_invitation! method overriden
+    def accept_invitation!
+      self.confirm!
+      super
+    end
+
+    # devise_invitable invite! method overriden
+    def invite!
+      super
+      self.confirmed_at = nil
+      self.save
+    end
+
+  private
+
+  def reward_inviter
+    inviter = User.find self.invited_by_id
+    inviter.points += 50
+    inviter.save
+  end
+
 end
 
 # == Schema Information

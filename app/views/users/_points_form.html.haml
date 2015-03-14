@@ -1,7 +1,7 @@
 %h2= point_action == 'add_points' ? 'Add' : 'Remove' + ' Points'
 
 = form_for :points, url: update_points_path(user.id) do |f| #edit_points_path
-  .hided
+  .hide
     = f.text_field :point_action, value: "#{ point_action == 'add_points' ? 'add_points' : 'remove_points'}"
   .row
     .small-8.columns

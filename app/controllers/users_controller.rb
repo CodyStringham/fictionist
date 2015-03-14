@@ -53,15 +53,15 @@ class UsersController < ApplicationController
 
   def update_points
     if params[:points][:point_action] == 'add_points'
-      update_code = @user.points += params[:points][:points].to_i
+      @user.points += params[:points][:points].to_i
     else
-      update_code = @user.points -= params[:points][:points].to_i
+      @user.points -= params[:points][:points].to_i
     end
 
-    if @user.update_attribute( :points, update_code )
+    if @user.save
       redirect_to users_path, notice: 'Points were successfully updated!'
     else
-      redirect_to users_path, alert: 'Something went wrong, sorry.'
+      redirect_to users_path, alert: "Something went wrong, sorry. #{@user.errors.full_messages}"
     end
   end
 
@@ -70,13 +70,14 @@ class UsersController < ApplicationController
     # authorize! :delete, @user
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to users_path }
       format.json { head :no_content }
     end
   end
 
   def invite_new_user
     user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+    user.update_attribute(:invited_by_id, current_user.id)
     redirect_to root_path, notice: "user was invited"
   end
 
