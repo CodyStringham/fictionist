@@ -24,11 +24,12 @@ end
 #  location           :string
 #  published_at       :datetime
 #  view_permission    :integer
-#  user_id            :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  asset_file_name    :string
 #  asset_content_type :string
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
+#  uploader_id        :integer
+#  value              :integer
 #
