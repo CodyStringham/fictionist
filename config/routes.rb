@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  mount Upmin::Engine => '/admin'
+  authenticate :user, lambda { |u| u.admin? || u.band_member?} do
+    mount Upmin::Engine => '/admin'
+  end
   devise_for :users,
               :controllers => { omniauth_callbacks: 'omniauth_callbacks' },
               path: '',
