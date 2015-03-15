@@ -1,7 +1,35 @@
+.margin-top-40
+  .row
+    .large-3.columns
+      = image_tag('//placehold.it/300x300')
+    .large-9.columns
+      %h3.margin-top-40= @user.name if @user.name
+      - if current_user.id == params[:id].to_i
+        = link_to 'Edit account', edit_user_registration_path, class: 'f-btn-primary small'
+
+
+- if current_user.id == params[:id].to_i
+  .row
+    .large-12.columns
+      %hr
+      .margin-top-40
+      %h3 Purchased Content
+      - if current_user.purchased_contents.any?
+
+      - else
+        %p You haven't spent any points yet!
+        = link_to "Earn Rewards", root_path, class: "f-btn-primary small"
+
 .row
-  .large-12.columns
-    %h3.margin-top-40 User
-    %p
-      Name: #{@user.name if @user.name}
-    %p
-      Email: #{@user.email if @user.email}
+  .large-12.columns.margin-bottom-40
+    %hr
+    .margin-top-40
+    %h3 Uploaded Content
+    %p Upload Fictionist content to earn more points!
+    = link_to "Upload Content", root_path, class: "f-btn-primary small"
+    - if current_user.uploaded_contents.any?
+      - current_user.uploaded_contents.each do |item|
+        = image_tag(item.asset.url(:thumb))
+
+
+
