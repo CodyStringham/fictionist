@@ -1,8 +1,8 @@
 class Content < ActiveRecord::Base
-
   belongs_to :user
 
   enum view_permission: [:free, :points] #:vip_only, :vip_or_points, :paid
+  enum asset_type: [:photo, :music, :video, :pdf]
 
   validates :asset_type, :message, :published_at, :view_permission, :uploader_id, presence: true
 

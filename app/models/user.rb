@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
 
   enum role: [:user, :band_member, :admin]
 
-  after_initialize :set_default_role, if: :new_record?
-
   has_one :identity, dependent: :destroy
   has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
 
@@ -24,10 +22,6 @@ class User < ActiveRecord::Base
 
   validates :points, numericality: { greater_than_or_equal_to: 0 }
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
-
-  def set_default_role
-    self.role ||= :user
-  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
