@@ -2,9 +2,8 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  validates :points, numericality: { greater_than_or_equal_to: 0 }
-
   enum role: [:user, :band_member, :admin]
+
   after_initialize :set_default_role, if: :new_record?
 
   has_one :identity, dependent: :destroy
@@ -13,19 +12,24 @@ class User < ActiveRecord::Base
   has_many :redemptions
   has_many :purchased_contents, through: :redemptions, class_name: "Content", source: :content
 
-  def set_default_role
-    self.role ||= :user
-  end
+  scope :fans, -> {where(role: 0) }
+  scope :band_members, -> {where(role: 1) }
+  scope :admins, -> {where(role: 2) }
 
+  scope :confirmed, -> {where.not(confirmed_at: nil) }
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  validates :points, numericality: { greater_than_or_equal_to: 0 }
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
+  def set_default_role
+    self.role ||= :user
+  end
 
+  def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
 
@@ -70,23 +74,23 @@ class User < ActiveRecord::Base
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
-    # devise confirm! method overriden
-    def confirm!
-      reward_inviter
-      super
-    end
+  # devise confirm! method overriden
+  def confirm!
+    reward_inviter
+    super
+  end
 
-    # devise_invitable accept_invitation! method overriden
-    def accept_invitation!
-      self.confirm!
-      super
-    end
+  # devise_invitable accept_invitation! method overriden
+  def accept_invitation!
+    self.confirm!
+    super
+  end
 
-    # devise_invitable invite! method overriden
-    def invite!
-      super
-      self.update_attributes(confirmed_at: nil)
-    end
+  # devise_invitable invite! method overriden
+  def invite!
+    super
+    self.update_attributes(confirmed_at: nil)
+  end
 
   private
 
