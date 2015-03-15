@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  authenticate :user, lambda { |u| u.admin? || u.band_member?} do
-    mount Upmin::Engine => '/admin'
-  end
+
   devise_for :users,
               :controllers => { omniauth_callbacks: 'omniauth_callbacks' },
               path: '',
@@ -11,15 +9,21 @@ Rails.application.routes.draw do
                 sign_out: 'sign-out',
                 password: 'password',
               }
+  # admin
+  authenticated :user, lambda {|u| u.admin? || u.band_member? } do
+    mount Upmin::Engine => '/admin'
+  end
+
   resources :users
   post '/users/:id/update_points', to: 'users#update_points', as: :update_points
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  root to: 'visitors#sign_in'
   get '/welcome', to: 'visitors#index', as: :welcome
 
   post '/new-user', to: 'users#invite_new_user', as: :invite
+
+  root to: 'visitors#sign_in'
 end
 
 # == Route Map

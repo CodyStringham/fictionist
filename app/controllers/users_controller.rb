@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :admin_only, :only => [:index]
+  before_action :authenticate_user!
+  before_action :admin_only, only: [:index]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :update_points]
 
   def index
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       unless @user == current_user
-        redirect_to :back, :alert => "Access denied."
+        redirect_to :back, alert: "Access denied."
       end
     end
   end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
-        sign_in(@user == current_user ? @user : current_user, :bypass => true)
+        sign_in(@user == current_user ? @user : current_user, bypass: true)
         format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
         @user.skip_reconfirmation!
-        sign_in(@user, :bypass => true)
+        sign_in(@user, bypass: true)
         redirect_to @user, notice: 'Your profile was successfully updated.'
       else
         @show_errors = true
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
   end
 
   def invite_new_user
-    user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+    user = User.invite!(email: params[:user][:email], name: params[:user][:name])
     user.update_attribute(:invited_by_id, current_user.id)
     redirect_to root_path, notice: "user was invited"
   end
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
 
   def admin_only
     unless current_user.admin?
-      redirect_to root_path, :alert => "Access denied."
+      redirect_to root_path, alert: "Access denied."
     end
   end
 
