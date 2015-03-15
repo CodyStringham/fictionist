@@ -5,7 +5,9 @@
         - 40.times do
           - if item.view_permission == 'free'
             %li.free-content= image_tag(item.asset.url(:thumb))
-          - elsif item.view_permission == 'points' && current_user.contents.any? { |x| x == item }
+          - elsif item.view_permission == 'points' && current_user.purchased_contents.any? { |x| x == item }
+            %li.locked-content= image_tag(item.asset.url(:thumb))
+          - elsif item.view_permission == 'points' && current_user.uploaded_contents.any? { |x| x == item }
             %li.locked-content= image_tag(item.asset.url(:thumb))
 
 .row
@@ -28,3 +30,9 @@
         small
       class
       = link_to "button", root_path, class: 'f-btn-primary small margin-left-20'
+    %p
+      or you can add an
+      %code
+        icon
+      = link_to root_path, class: 'f-btn-primary icon margin-left-20' do
+        %span.fa.fa-check

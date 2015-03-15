@@ -1,8 +1,8 @@
 class AddUploaderIdToContents < ActiveRecord::Migration
   def up
     add_column :contents, :uploader_id, :integer
-    add_column :contents, :value, :integer
-    add_column :redemptions, :value, :integer
+    add_column :contents, :value, :integer, default: 0
+    add_column :redemptions, :value, :integer, default: 0
     remove_column :contents, :user_id
   end
 
