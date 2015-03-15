@@ -1,6 +1,22 @@
-[class*="block-grid-"] > li {
-  padding: 0 0.25rem 0.5rem;
-  img {
-    border: 1px solid black;
+.grid-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+
+  #fictionist-grid {
+    .box {
+      background: transparent;
+    }
+    @media (max-width: 40em) {
+      .box {
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100%;
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
   }
 }
