@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'foundation-rails'
 gem 'font-awesome-rails'
+gem 'masonry-rails'
 
 gem 'high_voltage'
 gem 'simple_form'

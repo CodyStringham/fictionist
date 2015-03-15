@@ -16,12 +16,11 @@ Rails.application.routes.draw do
 
   resources :users
   post '/users/:id/update_points', to: 'users#update_points', as: :update_points
-
+  post '/new-user', to: 'users#invite_new_user', as: :invite
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   get '/welcome', to: 'visitors#index', as: :welcome
-
-  post '/new-user', to: 'users#invite_new_user', as: :invite
+  get '/grid', to: 'visitors#grid'
 
   root to: 'visitors#sign_in'
 end

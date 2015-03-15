@@ -1,41 +1,15 @@
+@import "masonry/basic";
+@import "masonry/centered";
+@import "masonry/fluid";
+@import "masonry/gutters";
+@import "masonry/infinitescroll";
+@import "masonry/right-to-left";
+@import "masonry/transitions";
+@import "font-awesome";
+
 @import "variables";
 @import "mixins";
 @import "utility_classes";
 @import "custom_foundation";
 @import "framework_and_overrides";
-@import "font-awesome";
 @import "grid";
-
-.f-btn-primary {
-  display: inline-block;
-  text-align: center;
-  border: 5px solid black;
-  background: transparent;
-  color: black;
-  font-size: 1rem;
-  font-weight: 800;
-  transition: color 300ms ease-out;
-  transition: background-color 300ms ease-out;
-  padding: 0.5rem 2rem 0.5625rem;
-  min-width: 150px;
-  line-height: 18px;
-  &.icon {
-    font-size: 0.8rem;
-    min-width: 30px;
-    padding: 0.25rem 0.5rem 0.2125rem;
-  }
-  &.small {
-    font-size: 0.8rem;
-    font-weight: 600;
-    min-width: 90px;
-    padding: 0.25rem 1rem 0.2125rem;
-    &.icon {
-
-    }
-  }
-  &:hover, &:focus {
-    background: black;
-    color: white;
-    cursor: pointer;
-  }
-}

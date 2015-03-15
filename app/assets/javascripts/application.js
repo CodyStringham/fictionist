@@ -14,7 +14,16 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.topbar
+//= require foundation/foundation.reveal
+//= require masonry/jquery.masonry
+//= require masonry/jquery.event-drag
+//= require masonry/jquery.imagesloaded.min
+//= require masonry/jquery.infinitescroll.min
+//= require masonry/modernizr-transitions
+//= require isotope/jquery.isotope
+
 //= require_tree .
 
 $(function() {
