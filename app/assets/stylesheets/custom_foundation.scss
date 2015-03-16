@@ -1,3 +1,64 @@
+@import "foundation";
+
+.top-bar-section li#register-item {
+  &:hover {
+    background: transparent;
+    a.register-link {
+      background: transparent;
+    }
+  }
+  a.register-link {
+    padding: 0 0.25rem;
+  }
+}
+
+.top-bar {
+  background: black;
+  &.expanded ul.title-area {
+    background: black;
+  }
+  .top-bar-section li:not(.has-form) a:not(.button):not(.button-xs) {
+    background: black;
+    &:hover {
+      background: lighten(black, 20%);
+    }
+  }
+}
+
+.authform {
+  max-width: 320px;
+  margin: 0 auto 100px auto;
+}
+.authform form p {
+  font-size: rem-calc(13);
+}
+
+.authform fieldset {
+  @include panel();
+}
+
+table.table {
+  width: 100%;
+  select {
+    max-width: 150px;
+  }
+}
+
+.authform #error_explanation {
+  border: 5px solid #f04124;
+  color: #f04124;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  h2 {
+    font-size: rem-calc(16);
+    color: #f04124;
+    font-weight: 800;
+  }
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 .f-btn-primary {
   display: inline-block;
   text-align: center;
@@ -11,9 +72,20 @@
   padding: 0.5rem 2rem 0.5625rem;
   min-width: 150px;
   line-height: 18px;
+  &.white {
+    border-color: white;
+    color: white;
+    &:hover {
+      background: white;
+      color: black;
+    }
+  }
   &.icon {
     font-size: 0.8rem;
-    min-width: 30px;
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    min-height: 35px;
     padding: 0.25rem 0.5rem 0.2125rem;
   }
   &.small {
@@ -21,9 +93,6 @@
     font-weight: 600;
     min-width: 90px;
     padding: 0.25rem 1rem 0.2125rem;
-    &.icon {
-
-    }
   }
   &:hover, &:focus {
     background: black;

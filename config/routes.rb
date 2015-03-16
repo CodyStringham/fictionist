@@ -19,10 +19,9 @@ Rails.application.routes.draw do
   post '/new-user', to: 'users#invite_new_user', as: :invite
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  get '/welcome', to: 'visitors#index', as: :welcome
   get '/grid', to: 'visitors#grid'
 
-  root to: 'visitors#sign_in'
+  root to: 'visitors#index'
 end
 
 # == Route Map

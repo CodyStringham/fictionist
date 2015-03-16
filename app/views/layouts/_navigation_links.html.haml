@@ -7,7 +7,9 @@
   %li.divider
   %li= link_to 'Sign in', new_user_session_path
   %li.divider
-  %li= link_to 'Sign up', new_user_registration_path
+  %li#register-item
+    = link_to new_user_registration_path, class: 'register-link' do
+      %span.f-btn-primary.white.small Register
 - if user_signed_in?
   - if current_user.admin?
     %li.divider
