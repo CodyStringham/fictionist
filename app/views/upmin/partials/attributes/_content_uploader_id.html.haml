@@ -1,10 +1,12 @@
 .form-group{class: attribute.errors? ? "has-error" : ""}
-  %label{for: attribute.form_id}
-    = 'Uploader Id'
   - if attribute.editable? && f = form_builder
+    %label{for: attribute.form_id}
+      = 'Uploader'
     .enum
-      = f.collection_select :uploader_id, User.band_members.order(:name), :id, :name, include_blank: false
-
+      - if current_user.band_member?
+        = f.collection_select :uploader_id, [[current_user.name, current_user.id]], :last, :first, include_blank: false
+      - else
+        = f.collection_select :uploader_id, User.band_members.order(:name), :id, :name, include_blank: true
   - else
     %p.well
       = attribute.value
