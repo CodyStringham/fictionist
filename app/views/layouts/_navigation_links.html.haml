@@ -12,15 +12,7 @@
       %li= link_to "Account", user_path(current_user.id)
       %li.divider
       %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
-- else
-  %li.divider
-  %li= link_to 'Sign in', new_user_session_path
-  %li.divider
-  %li#register-item
-    = link_to new_user_registration_path, class: 'register-link' do
-      %span.f-btn-primary.white.small Register
-- if user_signed_in?
-  - if current_user.admin?
+  - if current_user.admin? || current_user.band_member?
     %li.divider
     %li.has-dropdown
       = link_to "Admin", "#"
@@ -28,3 +20,11 @@
         %li= link_to 'Upmin', '/admin'
         %li.divider
         %li= link_to 'Users', users_path
+- else
+  %li.divider
+  %li= link_to 'Sign in', new_user_session_path
+  %li.divider
+  %li#register-item
+    = link_to new_user_registration_path, class: 'register-link' do
+      %span.f-btn-primary.white.small Register
+
