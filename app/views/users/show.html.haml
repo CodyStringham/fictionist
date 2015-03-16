@@ -3,7 +3,9 @@
     .large-3.columns
       = image_tag('//placehold.it/300x300')
     .large-9.columns
-      %h3.margin-top-40= @user.name if @user.name
+      %h3.margin-top-40
+        = @user.name if @user.name
+        = "| #{number_with_delimiter(@user.points)} Points"
       - if current_user.id == params[:id].to_i
         = link_to 'Edit account', edit_user_registration_path, class: 'f-btn-primary small'
 

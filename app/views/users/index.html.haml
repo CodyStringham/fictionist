@@ -26,5 +26,5 @@
           %th User Email
           %th{:colspan => 4} User Role
       %tbody
-        - @users.each do |user|
-          %tr= render user
+        - @users.sort.each do |user|
+          %tr= render user, user: user
