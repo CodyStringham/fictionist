@@ -8,7 +8,7 @@
     }
   }
   a.register-link {
-    padding: 0 0.25rem;
+    padding: 0 0.4rem;
   }
 }
 
@@ -78,6 +78,7 @@ table.table {
   line-height: 18px;
   &.white {
     border-color: white;
+    border-width: 2px;
     color: white;
     &:hover {
       background: white;
