@@ -1,10 +1,6 @@
 .form-group{class: attribute.errors? ? "has-error" : ""}
-  %label{for: attribute.form_id}
-    = 'Content Upload Type'
   - if attribute.editable? && f = form_builder
+    %label{for: attribute.form_id}
+      = 'Content Upload Type'
     .select
-      = f.collection_select :asset_type, Content.asset_types, :last, :first
-
-  - else
-    %p.well
-      = attribute.value
+      = f.collection_select :asset_type, Content.asset_types, :last, :first, include_blank: true

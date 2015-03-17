@@ -1,0 +1,11 @@
+.form-group{class: attribute.errors? ? "has-error" : ""}
+  -# value should only show up if it is not free
+  - if attribute.editable? && [:asset_file_size, :value].exclude?(attribute.name) && f = form_builder
+    %label{for: attribute.form_id}
+      = attribute.label_name
+    = f.number_field(attribute.name, value: attribute.value, class: "form-control")
+  -# don't care
+  -# - else
+  -#   %p.well
+  -#     = attribute.value
+

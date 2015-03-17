@@ -1,0 +1,19 @@
+- is_nil = model.new_record? ? false : attribute.value.nil?
+
+.form-group{class: attribute.errors? ? "has-error" : ""}
+  - if attribute.editable? && [:asset_content_type, :asset_file_name].exclude?(attribute.name) && f = form_builder
+    %label{for: attribute.form_id}
+      = attribute.label_name
+
+    .input-group{style: 'width: 100%;'}
+      = f.text_field(attribute.name, value: attribute.value, class: "form-control width-100")
+      -# don't need this make nil thing
+      -# .input-group-addon.nilable-addon
+      -#   .form-group
+      -#     %label{for: "#{attribute.form_id}_is_nil"}
+      -#       Make this Nil
+      -#     -# = check_box(model.underscore_name, "#{attribute.name}_is_nil", class: "boolean", checked: is_nil, value: is_nil)
+  -# don't need to show fields that are not editable
+  -# - else
+  -#   %p.well
+  -#     = attribute.value

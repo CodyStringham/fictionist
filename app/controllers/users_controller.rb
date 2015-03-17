@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   private
 
   def admin_only
-    unless current_user.admin?
+    unless current_user.admin? || current_user.band_member?
       redirect_to root_path, alert: "Access denied."
     end
   end
