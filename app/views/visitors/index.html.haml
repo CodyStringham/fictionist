@@ -1,14 +1,4 @@
-.row
-  .large-12.columns.text-center.margin-top-60
-    %ul.large-block-grid-10.medium-block-grid-8.small-block-grid-6.fictionist-grid
-      - Content.all.each do |item|
-        - 40.times do
-          - if item.view_permission == 'free'
-            %li.free-content= image_tag(item.asset.url(:thumb))
-          - elsif item.view_permission == 'points' && current_user.purchased_contents.any? { |x| x == item }
-            %li.locked-content= image_tag(item.asset.url(:thumb))
-          - elsif item.view_permission == 'points' && current_user.uploaded_contents.any? { |x| x == item }
-            %li.locked-content= image_tag(item.asset.url(:thumb))
+= render 'grid'
 
 .row
   .large-12.columns.text-center.margin-top-60

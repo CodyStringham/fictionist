@@ -1,0 +1,13 @@
+.grid-container.margin-top-40
+  .text-center
+    %span Hey, yeah you... click this button.
+    %a.f-btn-primary.filter-btn{:href => "filtered_thing"} Filter It!
+  #fictionist-grid.transitions-enabled.centered.clearfix
+    - Content.all.each do |item|
+      - if rand(2) == 1
+        .box.col2
+          = image_tag(item.asset.url(:thumb))
+      - else
+        .box.col2.filtered-thing
+          = image_tag(item.asset.url(:thumb_feature))
+

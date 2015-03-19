@@ -8,7 +8,7 @@ class Content < ActiveRecord::Base
 
   has_attached_file :asset,
                     styles: lambda { |a|
-                      ["image/jpeg", "image/png", "image/jpg", "image/gif"].include?( a.content_type ) ? { thumb: "100x100#", small: "150x150>", medium: "300x300>", large: "500x500>" } : {}
+                      ["image/jpeg", "image/png", "image/jpg", "image/gif"].include?( a.content_type ) ? { thumb: "100x100", thumb_feature: "100x200", small: "150x150>", medium: "300x300>", large: "500x500>" } : {}
                     }
   validates_attachment_content_type :asset, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/pdf", "audio/ogg", "applocation/ogg"]
 
