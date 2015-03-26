@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'masonry-rails'
+gem 'ffaker'
 
 gem 'high_voltage'
 gem 'simple_form'
@@ -58,7 +59,6 @@ group :development, :test do
   gem 'jazz_fingers'
   gem 'web-console', github: 'rails/web-console', branch: 'master'
   gem 'rubocop'
-  gem 'ffaker'
   gem 'factory_girl_rails'
   gem 'minitest-rails'
 end
