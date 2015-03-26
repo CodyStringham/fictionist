@@ -16,6 +16,7 @@ Getting Started
 - Run `bin/setup` and follow instructions.
 - Run `rails s`
 
+
 Credits
 -------
 /CodyStringham
