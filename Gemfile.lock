@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/div/mailboxer.git
+  revision: 41c9d8de2e0ad4dc511718074228d40a1ba96ebe
+  branch: rails42-foreigner
+  specs:
+    mailboxer (0.12.4)
+      carrierwave (>= 0.5.8)
+      rails (>= 3.2.0)
+
+GIT
   remote: git://github.com/rails/web-console.git
   revision: 3fad9de6a2d98b983db8c7ef5c9dcaf6a6f49879
   branch: master
@@ -68,6 +77,11 @@ GEM
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
     callsite (0.0.11)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     climate_control (0.0.3)
@@ -429,6 +443,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   letter_opener
+  mailboxer!
   masonry-rails
   meta_request
   minitest-rails

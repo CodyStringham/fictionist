@@ -15,6 +15,21 @@
     .large-12.columns
       %hr
       .margin-top-40
+      %h3 Messages
+      - current_user.mailbox.inbox.each do |message|
+        .panel
+          %strong Subject:
+          %br
+          = message.subject
+          %br
+          .margin-top-5
+          %strong Message:
+          %br
+          = message.receipts.first.message.body
+  .row
+    .large-12.columns
+      %hr
+      .margin-top-40
       %h3 Purchased Content
       - if current_user.purchased_contents.any?
 
@@ -28,7 +43,8 @@
     .margin-top-40
     %h3 Uploaded Content
     %p Upload Fictionist content to earn more points!
-    = link_to "Upload Content", root_path, class: "f-btn-primary small"
+    - if current_user.id == params[:id].to_i
+      = link_to "Upload Content", root_path, class: "f-btn-primary small"
     - if current_user.uploaded_contents.any?
       - current_user.uploaded_contents.each do |item|
         = image_tag(item.asset.url(:thumb))

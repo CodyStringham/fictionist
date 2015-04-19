@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'masonry-rails'
+gem 'mailboxer', :git => 'git://github.com/div/mailboxer.git', :branch => 'rails42-foreigner'
+
 gem 'ffaker'
 
 gem 'high_voltage'

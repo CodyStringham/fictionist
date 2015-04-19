@@ -23,6 +23,15 @@ class User < ActiveRecord::Base
   validates :points, numericality: { greater_than_or_equal_to: 0 }
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
+  acts_as_messageable
+  # u = User.find_by(role: 2) (admin user)
+  # u.send_message(u, "Hello, someone wants you to approve their points", "User Request")
+
+  # u = User.find_by(submitted_request: them)
+  # a = User.find_by(role: 2) (admin user)
+  # a.send_message(u, "Congrats! You have been awarded points for doing good things.", "FictMonies Awarded")
+  # a.send_message(u, "Sorry, your point request has been declined.", "FictMonies Declined")
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
@@ -84,6 +93,18 @@ class User < ActiveRecord::Base
   def invite!
     super
     self.update_attributes(confirmed_at: nil)
+  end
+
+  def mailboxer_name
+    return "You should add method :mailboxer_name in your Messageable model"
+  end
+
+  def mailboxer_email(object)
+    #Check if an email should be sent for that object
+    #if true
+    return self.email
+    #if false
+    #return nil
   end
 
   private
