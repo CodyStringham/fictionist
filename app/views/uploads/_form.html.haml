@@ -1,0 +1,5 @@
+= simple_form_for @content, url: uploads_path do |f|
+  = f.input :message
+  = f.input :asset
+  = f.input :value
+  = f.submit "Upload", class: 'f-btn-primary'

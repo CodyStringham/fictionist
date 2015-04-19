@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   post '/new-user', to: 'users#invite_new_user', as: :invite
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  get '/grid', to: 'visitors#grid'
+  # uploads
+  resources :uploads
 
   root to: 'visitors#index'
 end

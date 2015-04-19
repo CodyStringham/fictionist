@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150315012726) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "uploader_id"
-    t.integer  "value",              default: 0
-    t.integer  "asset_type",         default: 0
+    t.integer  "value",                          default: 0
+    t.integer  "asset_type",                     default: 0
   end
 
   create_table "identities", force: :cascade do |t|

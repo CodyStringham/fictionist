@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require foundation/foundation
 //= require foundation/foundation.topbar
 //= require foundation/foundation.reveal
@@ -26,8 +25,10 @@
 //= require masonry/modernizr-transitions
 //= require isotope/jquery.isotope
 
+//= require turbolinks
 //= require_tree .
 
 $(function() {
   $(document).foundation();
+  Turbolinks.pagesCached(0);
 });

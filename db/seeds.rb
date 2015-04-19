@@ -24,7 +24,14 @@ User.where(role: 1).each do |user|
     a.message = Faker::Lorem.sentence
     a.published_at = Time.now
     a.view_permission = ['free', 'points'].sample
-    a.asset = open("https://placeimg.com/#{@image_sizes.sample}/#{@image_sizes.sample}/#{@image_categories.sample}")
+    if rand(0..10).odd?
+      puts "creating mp3"
+      a.asset = File.open("#{Rails.root}/app/assets/music/creep.mp3")
+    else
+      puts "creating image"
+      a.asset = open("https://placeimg.com/#{@image_sizes.sample}/#{@image_sizes.sample}/#{@image_categories.sample}")
+    end
+
     a.save
   end
 end

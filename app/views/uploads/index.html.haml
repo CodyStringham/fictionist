@@ -1,0 +1,16 @@
+.margin-top-40
+  .row
+    .large-12.columns
+
+      %h1 Your Uploaded Content
+      .margin-bottom-40
+        = link_to "New Content", new_upload_path, class: 'f-btn-primary'
+
+      %ul.small-block-grid-2.medium-block-grid-4.large-block-grid-6
+        - @contents.each do |content|
+          - if content.asset_content_type == "image/jpeg"
+            %li= image_tag(content.asset.url(:thumb))
+          - if content.asset_content_type == "audio/mp3"
+            %li
+              = link_to content.asset.url do
+                = image_tag('music-thumb.png')

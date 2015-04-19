@@ -4,13 +4,14 @@ class Content < ActiveRecord::Base
   enum view_permission: [:free, :points] #:vip_only, :vip_or_points, :paid
   enum asset_type: [:photo, :music, :video, :pdf, :text]
 
-  validates :asset_type, :message, :published_at, :view_permission, :uploader_id, presence: true
+  validates :asset_type, :message, :uploader_id, presence: true
+  # validates_inclusion_of :view_permission, in: ['free', 'points']
 
   has_attached_file :asset,
                     styles: lambda { |a|
                       ["image/jpeg", "image/png", "image/jpg", "image/gif"].include?( a.content_type ) ? { thumb: "100x100", thumb_feature: "100x200", small: "150x150>", medium: "300x300>", large: "500x500>" } : {}
                     }
-  validates_attachment_content_type :asset, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/pdf", "audio/ogg", "applocation/ogg"]
+  validates_attachment_content_type :asset, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/pdf", "audio/ogg", "applocation/ogg", "audio/mpeg", "audio/mp3"]
 
 end
 
