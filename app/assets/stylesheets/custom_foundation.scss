@@ -103,5 +103,11 @@ table.table {
     background: black;
     color: white;
     cursor: pointer;
+    outline: 0;
+    outline-color: transparent;
+  }
+  &.active {
+    background: black;
+    color: white;
   }
 }

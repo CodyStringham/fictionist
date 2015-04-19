@@ -5,6 +5,8 @@ $(document).ready ->
 
     $('.filter-btn').on 'click', (e) ->
       e.preventDefault()
+      $('.filter-btn').removeClass('active')
+      $(@).addClass('active')
       if $(@).attr('href') == 'filter_images'
         $('.item.music').hide().parent().css({margin:0, padding:0})
         $('.item.image').show().parent().css({margin:'5px', padding:'5px'})
@@ -16,6 +18,8 @@ $(document).ready ->
         $('.item.music').show().parent().css({margin:'5px', padding:'5px'})
       $('#fictionist-grid').callMasonry()
 
+
+  $
 
   $.fn.callMasonry = () ->
     $('#fictionist-grid').masonry
