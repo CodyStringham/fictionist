@@ -17,7 +17,6 @@ end
 # Table name: contents
 #
 #  id                 :integer          not null, primary key
-#  asset_type         :string           not null
 #  message            :string           not null
 #  location           :string
 #  published_at       :datetime
@@ -29,5 +28,6 @@ end
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
 #  uploader_id        :integer
-#  value              :integer
+#  value              :integer          default("0")
+#  asset_type         :integer          default("0")
 #

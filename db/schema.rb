@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419025532) do
+ActiveRecord::Schema.define(version: 20150419164543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(version: 20150419025532) do
     t.integer  "value",              default: 0
     t.integer  "asset_type",         default: 0
   end
+
+  create_table "efforts", force: :cascade do |t|
+    t.integer  "kind"
+    t.integer  "value"
+    t.integer  "status"
+    t.string   "proof_file_name"
+    t.string   "proof_content_type"
+    t.integer  "proof_file_size"
+    t.datetime "proof_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "efforts", ["user_id"], name: "index_efforts_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -142,6 +157,7 @@ ActiveRecord::Schema.define(version: 20150419025532) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "efforts", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"

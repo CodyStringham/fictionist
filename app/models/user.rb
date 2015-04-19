@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
 
+  has_many :efforts
+
   has_many :redemptions
   has_many :purchased_contents, through: :redemptions, class_name: "Content", source: :content
 
@@ -144,7 +146,7 @@ end
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  role                   :integer
+#  role                   :integer          default("0")
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
