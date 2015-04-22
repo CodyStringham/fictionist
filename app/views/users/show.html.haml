@@ -10,22 +10,24 @@
         = link_to 'Edit account', edit_user_registration_path, class: 'f-btn-primary small'
 
 
+= render 'points/earn_points'
+
 - if current_user.id == params[:id].to_i
-  .row
-    .large-12.columns
-      %hr
-      .margin-top-40
-      %h3 Messages
-      - current_user.mailbox.inbox.each do |message|
-        .panel
-          %strong Subject:
-          %br
-          = message.subject
-          %br
-          .margin-top-5
-          %strong Message:
-          %br
-          = message.receipts.first.message.body
+  -# .row
+  -#   .large-12.columns
+  -#     %hr
+  -#     .margin-top-40
+  -#     %h3 Messages
+  -#     - current_user.mailbox.inbox.each do |message|
+  -#       .panel
+  -#         %strong Subject:
+  -#         %br
+  -#         = message.subject
+  -#         %br
+  -#         .margin-top-5
+  -#         %strong Message:
+  -#         %br
+  -#         = message.receipts.first.message.body
   .row
     .large-12.columns
       %hr

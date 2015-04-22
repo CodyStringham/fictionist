@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
 
-  has_many :efforts
+  has_many :user_efforts
 
   has_many :redemptions
   has_many :purchased_contents, through: :redemptions, class_name: "Content", source: :content

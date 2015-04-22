@@ -1,0 +1,35 @@
+.margin-top-40
+  .row
+    .large-12.columns
+
+      %h1 Award Efforts
+      %table
+        %thead
+          %tr
+            %th{width: 200} User Name
+            %th{width: 200} Effort Type
+            %th{width: 200} Effort Value
+            %th{width: 200} Effort Screenshot
+            %th{width: 200} Approve / Decline
+        %tbody
+          - @pending.each do |effort|
+            %tr
+              %td #{effort.user.name}
+              %td #{effort.effort.name}
+              %td #{effort.value} Points
+              %td
+                = link_to "", "data-reveal-id" => "screenshotModal" do
+                  = image_tag(effort.screenshot.url(:thumb))
+              %td
+                = link_to edit_effort_path(effort), class: 'f-btn-primary icon' do
+                  %span.fa.fa-check
+                = link_to edit_effort_path(effort), class: 'f-btn-primary icon' do
+                  %span.fa.fa-close
+
+
+-# %a{"data-reveal-id" => "screenshotModal", :href => "#"} Click Me For A Modal
+#screenshotModal.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "screenshotTitle", "data-reveal" => "", :role => "dialog"}
+  %h2#screenshotTitle Awesome. I have it.
+  %p.lead Your couch.  It is mine.
+  %p I'm a cool paragraph that lives inside of an even cooler modal. Wins!
+  %a.close-reveal-modal{"aria-label" => "Close"} &#215;

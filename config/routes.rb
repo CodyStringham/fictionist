@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'visitors#index'
 
   devise_for :users,
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   post '/new-user', to: 'users#invite_new_user', as: :invite
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
+  # points
+  resources :points, except: [:show]
+
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do
     mount Upmin::Engine => '/admin'
@@ -25,6 +29,10 @@ Rails.application.routes.draw do
 
     # efforts
     resources :efforts, except: [:show, :new, :create, :destroy]
+    get '/efforts/award', to: 'efforts#award', as: :award
+
+    get '/points/share-location', to: 'points#share_location', as: :share_location
+    get '/points/request-venue', to: 'points#request_venue', as: :request_venue
   end
 
 end

@@ -1,7 +1,7 @@
 class UploadsController < ApplicationController
 
   def index
-    @contents = current_user.uploaded_contents
+    @contents = Content.all
   end
 
   def new
@@ -15,6 +15,24 @@ class UploadsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @content = Content.find(params[:id])
+  end
+
+  def update
+    @content = Content.find(params[:id])
+    if @content.update(content_params)
+      redirect_to root_path, notice: 'content was updated.'
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @content = Content.find(params[:id])
+    @content.delete
   end
 
   private
