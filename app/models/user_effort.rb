@@ -8,7 +8,7 @@ class UserEffort < ActiveRecord::Base
 
   after_validation :get_value
 
-  has_attached_file :screenshot, styles: { thumb: "100x100",  small: "150x150>", medium: "300x300>", large: "500x500>" }
+  has_attached_file :screenshot, styles: { thumb: "100x100", large: "1000x1000>" }
 
   validates_attachment_content_type :screenshot, content_type: ["image/jpg", "image/jpeg", "image/png"]
   validates :user_id, :effort_id, :screenshot, presence: true

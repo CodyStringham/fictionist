@@ -1,7 +1,4 @@
-.row
-  .small-12.columns
-    %h1 Request Points
-    = simple_form_for @request, url: points_path do |f|
-      = f.association :effort, collection: @selectable
-      = f.input :screenshot
-      = f.submit "Update", class: 'f-btn-primary'
+= simple_form_for @request, url: points_path do |f|
+  = f.association :effort, collection: @selectable
+  = f.input :screenshot
+  = f.submit "Request Points", class: 'f-btn-primary'

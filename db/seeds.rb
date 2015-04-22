@@ -5,7 +5,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 puts "Creating band members"
 band_members = ["Aaron Anderson", "Robbie Connolly", "Brandon Kitterman", "Stuart Maxfield"]
 band_members.each do |member|
-  User.invite! email: "#{member.split(' ').first}@fictionist.com", name: member, password: '123456789', role: 1 do |u|
+  User.invite! email: "#{member.split(' ').first}@fictionist.com", name: member, password: '1234567890', role: 1 do |u|
     u.skip_invitation = true
   end
 end
