@@ -6,11 +6,20 @@ module AdminOnly
   extend ActiveSupport::Concern
 
   included do
-    before_filter :authenticate_user!
-    before_filter :admin_only
+    before_action :configure_upmin
+    before_action :authenticate_user!
+    before_action :admin_only
   end
 
   private
+
+  # this seems odd, and it is... but associations need to be loaded!
+  def configure_upmin
+    User.connection
+    Upmin.configure do |config|
+      config.models = [:content, :effort, :redemption, :user]
+    end
+  end
 
   def admin_only
     unless current_user.admin?

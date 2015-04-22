@@ -14,6 +14,5 @@
         = render 'layouts/navigation'
     = render 'layouts/messages'
     %main{:role => "main"}
-      = yield
-      - if Rails.env.development?
-        .web-console-fix
+      .margin-vertical-40
+        = yield

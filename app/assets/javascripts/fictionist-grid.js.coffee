@@ -1,7 +1,7 @@
 $(document).ready ->
-  if $('#fictionist-grid')
-    $('#fictionist-grid').imagesLoaded ->
-      $('#fictionist-grid').callMasonry()
+  if (contentGrid = $ '#fictionist-grid').length
+    contentGrid.imagesLoaded ->
+      contentGrid.doMasonry()
 
     $('.filter-btn').on 'click', (e) ->
       e.preventDefault()
@@ -16,13 +16,10 @@ $(document).ready ->
       else if $(@).attr('href') == 'filter_all'
         $('.item.image').show().parent().css({margin:'5px', padding:'5px'})
         $('.item.music').show().parent().css({margin:'5px', padding:'5px'})
-      $('#fictionist-grid').callMasonry()
+      contentGrid.doMasonry()
 
-
-  $
-
-  $.fn.callMasonry = () ->
-    $('#fictionist-grid').masonry
-      itemSelector: '.box'
-      isFitWidth: true
-      columnWidth: 100
+    $.fn.doMasonry = () ->
+      contentGrid.masonry
+        itemSelector: '.box'
+        isFitWidth: true
+        columnWidth: 100

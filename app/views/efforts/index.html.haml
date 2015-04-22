@@ -1,0 +1,17 @@
+.row
+  .large-12.columns
+
+    %h1 Manage Efforts
+    %table
+      %thead
+        %tr
+          %th{width: 600} Name
+          %th{width: 200} Value
+          %th{width: 200}
+      %tbody
+        - @efforts.each do |effort|
+          %tr
+            %td= effort.name
+            %td #{effort.value} Points
+            %td
+              = link_to "Edit", edit_effort_path(effort), class: 'f-btn-primary small'

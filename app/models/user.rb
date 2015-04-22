@@ -12,11 +12,12 @@ class User < ActiveRecord::Base
   has_many :redemptions
   has_many :purchased_contents, through: :redemptions, class_name: "Content", source: :content
 
-  scope :fans, -> {where(role: 0) }
-  scope :band_members, -> {where(role: 1) }
-  scope :admins, -> {where(role: 2) }
+  scope :fans, -> { where(role: 0) }
+  scope :band_members, -> { where(role: 1) }
+  scope :admins, -> { where(role: 2) }
 
-  scope :confirmed, -> {where.not(confirmed_at: nil) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,

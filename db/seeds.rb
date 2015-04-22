@@ -1,7 +1,8 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-# Make band members
+
+puts "Creating band members"
 band_members = ["Aaron Anderson", "Robbie Connolly", "Brandon Kitterman", "Stuart Maxfield"]
 band_members.each do |member|
   User.invite! email: "#{member.split(' ').first}@fictionist.com", name: member, password: '123456789', role: 1 do |u|
@@ -9,12 +10,12 @@ band_members.each do |member|
   end
 end
 
-# Confirm band mambers
+puts "Accepting band members invites"
 User.all.each do |u|
   u.accept_invitation!
 end
 
-# Band Members Content
+puts "Creating band member content"
 @image_categories = %w( animals arch nature people tech )
 @image_sizes = %w( 500 550 400 450 425 525 475 )
 
@@ -36,4 +37,8 @@ User.where(role: 1).each do |user|
   end
 end
 
+puts "Creating Efforts"
 
+Effort::KINDS.each do |kind|
+  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20)
+end
