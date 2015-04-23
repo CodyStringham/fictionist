@@ -1,11 +1,14 @@
 class PointsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    @pending = current_user.user_efforts.pending
   end
 
   def new
     @request = current_user.user_efforts.new
     # makes [ "Effort Name", 42 ] for select
-    @selectable = Effort::VALIDATABLE.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
+    @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
   end
 
   def share_location
@@ -26,6 +29,8 @@ class PointsController < ApplicationController
   end
 
   def edit
+    @request = UserEffort.find(params[:id])
+    @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
   end
 
   def update

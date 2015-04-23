@@ -1,2 +1,33 @@
-%h1 Points#index
-%p Find me in app/views/points/index.html.haml
+.margin-top-40
+  .row
+    .large-12.columns
+      %h1 Probably explain how to earn points
+      .margin-vertical-40
+        = link_to 'New Point Request', new_point_path, class: 'f-btn-primary'
+
+  .row
+    .large-6.columns
+      %h3 Repeatable Efforts
+      %ul
+        %li blog_post
+        %li upload_content
+        %li facebook_like
+        %li twitter_like
+        %li instagram_like
+        %li youtube_like
+        %li facebook_post
+        %li twitter_post
+        %li instagram_post
+        %li youtube_post
+    .large-6.columns
+      %h3 One-time Efforts
+      %ul
+        %li share_location_information
+        %li request_a_concert
+
+- if @pending.present?
+  .row
+    .large-12.columns
+      %h3 Pending Requests
+      - @pending.each do |request|
+        = link_to request.effort.name, edit_point_path(request), class: 'f-btn-primary small'

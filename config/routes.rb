@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     # efforts
     resources :efforts, except: [:show, :new, :create, :destroy]
     get '/efforts/award', to: 'efforts#award', as: :award
+    post '/efforts/award/approved/:user_id/:user_effort', to: 'efforts#approve', as: :approve_effort
+    post '/efforts/award/declined/:user_id/:user_effort', to: 'efforts#decline', as: :decline_effort
 
     get '/points/share-location', to: 'points#share_location', as: :share_location
     get '/points/request-venue', to: 'points#request_venue', as: :request_venue

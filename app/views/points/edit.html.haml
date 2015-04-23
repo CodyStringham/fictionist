@@ -1,2 +1,11 @@
-%h1 Points#edit
-%p Find me in app/views/points/edit.html.haml
+.margin-top-40
+  .row
+    .large-12.columns
+      %h1 Edit #{@request.effort.name} Request
+    .large-6.columns
+      = render 'form'
+    .large-6.columns
+      %span
+        current screenshot:
+        = image_tag(@request.screenshot.url(:large))
+
