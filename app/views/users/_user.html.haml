@@ -7,9 +7,9 @@
     = f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { class: 'margin-bottom-0' })
     = f.submit 'Update', :class => 'f-btn-primary small'
 %td
-  %a.f-btn-primary.icon{"data-reveal-id" => "removePointModal", :href => "#"}
+  %a.f-btn-primary.icon{"data-reveal-id" => "removePointModal#{user.id}", :href => "#"}
     .fa.fa-minus
-  %a.f-btn-primary.icon{"data-reveal-id" => "addPointModal", :href => "#"}
+  %a.f-btn-primary.icon{"data-reveal-id" => "addPointModal#{user.id}", :href => "#"}
     .fa.fa-plus
   %b Points:
   = number_with_delimiter(user.points)
@@ -19,8 +19,8 @@
       .fa.fa-trash
 
 
-#addPointModal.reveal-modal{"data-reveal" => ""}
+%div.reveal-modal{"id" => "addPointModal#{user.id}", "data-reveal" => ""}
   = render 'points_form', user: user, point_action: 'add_points'
 
-#removePointModal.reveal-modal{"data-reveal" => ""}
+%div.reveal-modal{"id" => "removePointModal#{user.id}", "data-reveal" => ""}
   = render 'points_form', user: user, point_action: 'remove_points'

@@ -3,6 +3,7 @@ class PointsController < ApplicationController
 
   def index
     @pending = current_user.user_efforts.pending
+    @new_user = User.new
   end
 
   def new
