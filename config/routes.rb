@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   get '/points/:effort_id/new', to: 'points#new', as: :new_point
   post '/points/:effort_id', to: 'points#create', as: :create_point
 
+  get '/share-location', to: 'points#share_location', as: :share_location
+  post '/share-location', to: 'points#create_share_location', as: :create_share_location
+
+  get '/request-venue', to: 'points#request_venue', as: :request_venue
+
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do
     mount Upmin::Engine => '/admin'
@@ -34,9 +39,6 @@ Rails.application.routes.draw do
     get '/efforts/award', to: 'efforts#award', as: :award
     post '/efforts/award/approved/:user_id/:user_effort', to: 'efforts#approve', as: :approve_effort
     post '/efforts/award/declined/:user_id/:user_effort', to: 'efforts#decline', as: :decline_effort
-
-    get '/points/share-location', to: 'points#share_location', as: :share_location
-    get '/points/request-venue', to: 'points#request_venue', as: :request_venue
   end
 
 end

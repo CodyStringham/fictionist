@@ -1,0 +1,10 @@
+.row
+  .large-12.columns
+    %h1 Share your location
+    %p We will use this information to tell you when Fictionist is having a show in your area! You will only be awarded points the first time you share your location.
+
+.row
+  .large-12.columns
+    = simple_form_for :share_location, url: create_share_location_path do |f|
+      = f.input :preferred_location, collection: User::LOCATIONS, as: :radio_buttons, checked: current_user.preferred_location
+      = f.submit "Save", class: 'f-btn-primary'

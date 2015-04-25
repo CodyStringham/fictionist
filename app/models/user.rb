@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
+  LOCATIONS = [:salt_lake_city, :orem, :provo, :ogden]
 
   enum role: [:user, :band_member, :admin]
+  enum preferred_location: LOCATIONS
 
   has_one :identity, dependent: :destroy
   has_many :uploaded_contents, class_name: "Content", primary_key: "id", foreign_key: "uploader_id"
