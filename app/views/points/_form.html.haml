@@ -1,4 +1,5 @@
-= simple_form_for @request, url: points_path do |f|
-  = f.association :effort, collection: @selectable
+= simple_form_for @request, url: create_point_path do |f|
+  -# = f.association :effort, collection: @selectable
+  = f.input :effort_id, as: :hidden, :input_html => { :value => "#{params[:effort_id]}" }
   = f.input :screenshot
   = f.submit "Request Points", class: 'f-btn-primary'

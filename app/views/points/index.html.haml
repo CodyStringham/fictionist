@@ -2,11 +2,13 @@
   .row
     .large-12.columns
       %h1 Probably explain how to earn points
-      .margin-vertical-40
-        = link_to 'New Point Request', new_point_path, class: 'f-btn-primary'
+      -# .margin-top-40
+        -# = link_to 'New Point Request', new_point_path, class: 'f-btn-primary'
 
-  .row.text-center
-    %h3.margin-vertical-40 Invite a User
+.margin-top-40
+  .row
+    %h3 Invite a User
+    %p When they accept your invitation and create an account, you will get 50 points!
     = form_for @new_user, url: invite_path do |f|
       .row
         .medium-5.columns
@@ -24,30 +26,27 @@
         .medium-2.columns
           = f.submit 'Send Invitation', class: 'f-btn-primary small'
 
+
+-# :spotify_playlist, :blog_post, :facebook_like, :twitter_like, :instagram_like, :youtube_like, :facebook_post, :twitter_post, :instagram_post, :youtube_post
+.margin-top-40
   .row
     .large-6.columns
       %h3 Repeatable Efforts
       %ul
-        %li invite_user
-        %li blog_post
-        %li upload_content
-        %li facebook_like
-        %li twitter_like
-        %li instagram_like
-        %li youtube_like
-        %li facebook_post
-        %li twitter_post
-        %li instagram_post
-        %li youtube_post
+        %li= link_to "Create a Spotify playlist", new_point_path(get_effort("spotify_playlist")), class: 'f-btn-primary small'
+        %li= link_to "Create a blog post", new_point_path(get_effort("blog_post")), class: 'f-btn-primary small'
+        %li= link_to "Post about us on Facebook", new_point_path(get_effort("facebook_post")), class: 'f-btn-primary small'
+        %li= link_to "Tweet about us on Twitter", new_point_path(get_effort("twitter_post")), class: 'f-btn-primary small'
+        %li= link_to "Post about us on Instagram", new_point_path(get_effort("instagram_post")), class: 'f-btn-primary small'
+        %li= link_to "Make a YouTube video", new_point_path(get_effort("youtube_post")), class: 'f-btn-primary small'
+        -# %li= link_to "Upload a song or picture", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary small'
+
     .large-6.columns
       %h3 One-time Efforts
       %ul
-        %li share_location_information
-        %li request_a_concert
-
-- if @pending.present?
-  .row
-    .large-12.columns
-      %h3 Pending Requests
-      - @pending.each do |request|
-        = link_to request.effort.name, edit_point_path(request), class: 'f-btn-primary small'
+        %li= link_to "Share your location", share_location_path, class: 'f-btn-primary small'
+        %li= link_to "Request a venue", request_venue_path, class: 'f-btn-primary small'
+        %li= link_to "Like us on Facebook", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary small'
+        %li= link_to "Follow us on Twitter", new_point_path(get_effort("twitter_like")), class: 'f-btn-primary small'
+        %li= link_to "Like us on Instagram", new_point_path(get_effort("instagram_like")), class: 'f-btn-primary small'
+        %li= link_to "Subscribe to our YouTube channel", new_point_path(get_effort("youtube_like")), class: 'f-btn-primary small'

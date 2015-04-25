@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   # points
-  resources :points, except: [:show]
+  resources :points, only: [:index]
+  get '/points/:effort_id/new', to: 'points#new', as: :new_point
+  post '/points/:effort_id', to: 'points#create', as: :create_point
 
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do

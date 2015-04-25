@@ -9,9 +9,6 @@
       - if current_user.id == params[:id].to_i
         = link_to 'Edit account', edit_user_registration_path, class: 'f-btn-primary small'
 
-
-= render 'points/earn_points'
-
 - if current_user.id == params[:id].to_i
   -# .row
   -#   .large-12.columns

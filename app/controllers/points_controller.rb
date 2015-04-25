@@ -7,9 +7,10 @@ class PointsController < ApplicationController
   end
 
   def new
+    @effort = Effort.find(params[:effort_id])
     @request = current_user.user_efforts.new
     # makes [ "Effort Name", 42 ] for select
-    @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
+    # @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
   end
 
   def share_location
@@ -29,16 +30,16 @@ class PointsController < ApplicationController
     end
   end
 
-  def edit
-    @request = UserEffort.find(params[:id])
-    @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
-  end
+  # def edit
+  #   @request = UserEffort.find(params[:id])
+  #   @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
+  # end
 
-  def update
-  end
+  # def update
+  # end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 
@@ -46,8 +47,8 @@ class PointsController < ApplicationController
     params.require(:user_effort).permit(:effort_id, :screenshot)
   end
 
-  def enum_title(symbol)
-    symbol.to_s.gsub("_", " ").titleize
-  end
+  # def enum_title(symbol)
+  #   symbol.to_s.gsub("_", " ").titleize
+  # end
 
 end
