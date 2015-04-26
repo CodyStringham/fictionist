@@ -22,7 +22,7 @@ puts "Creating band member content"
 User.where(role: 1).each do |user|
   10.times do
     a = user.uploaded_contents.new
-    a.message = Faker::Lorem.sentence
+    a.message = FFaker::Lorem.sentence
     a.published_at = Time.now
     a.view_permission = ['free', 'points'].sample
     if rand(0..10).odd?

@@ -1,0 +1,5 @@
+.form-group{class: attribute.errors? ? "has-error" : ""}
+  %label{for: attribute.form_id}
+    = 'Asset Upload'
+  .input-group{style: 'width: 100%;'}
+    = form_builder.file_field :asset

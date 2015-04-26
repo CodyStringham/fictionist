@@ -38,7 +38,7 @@ class UploadsController < ApplicationController
   private
 
   def content_params
-    params.require(:content).permit(:message, :asset, :view_permission, :value)
+    params.require(:content).permit(:message, :asset, :view_permission, :value, :asset_type, :uploader_id, :location)
   end
 
 end
