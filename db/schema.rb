@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150426030519) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "uploader_id"
-    t.integer  "value",              default: 0
+    t.integer  "value"
     t.integer  "asset_type",         default: 0
   end
 
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 20150426030519) do
   create_table "redemptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "content_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "value",      default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "value"
   end
 
   add_index "redemptions", ["content_id"], name: "index_redemptions_on_content_id", using: :btree
