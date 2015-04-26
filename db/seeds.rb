@@ -39,10 +39,14 @@ end
 
 puts "Creating Efforts"
 
-Effort::KINDS.each do |kind|
-  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20)
+Effort::ONETIME.each do |kind|
+  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20, repeatable: false)
+end
+
+Effort::REPEATABLE.each do |kind|
+  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20, repeatable: true)
 end
 
 Effort::SPECIALS.each do |kind|
-  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20)
+  Effort.create(name: kind.to_s.split("_").join(" ").titleize, kind: kind, value: 20, repeatable: false)
 end

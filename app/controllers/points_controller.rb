@@ -9,8 +9,6 @@ class PointsController < ApplicationController
   def new
     @effort = Effort.find(params[:effort_id])
     @request = current_user.user_efforts.new
-    # makes [ "Effort Name", 42 ] for select
-    # @selectable = Effort::KINDS.map {|x| [ enum_title(x), Effort.find_by(name: enum_title(x)).id ] }
   end
 
   def create
@@ -18,7 +16,7 @@ class PointsController < ApplicationController
     if @request.save
       redirect_to root_path, notice: 'Points were requested.'
     else
-      render 'new'
+      redirect_to new_point_path(params[:effort_id]), alert: "#{@request.errors.full_messages.pop}"
     end
   end
 

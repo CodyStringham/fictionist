@@ -8,12 +8,14 @@ class UserEffort < ActiveRecord::Base
   scope :approved, -> { where(status: 1) }
   scope :declined, -> { where(status: 2) }
 
-  after_validation :get_value
-
   has_attached_file :screenshot, styles: { thumb: "100x100", large: "1000x1000>" }
 
   validates_attachment_content_type :screenshot, content_type: ["image/jpg", "image/jpeg", "image/png"]
   validates :user_id, :effort_id, :screenshot, presence: true
+  validate :is_effort_repeatable?
+
+  # after_validation :completed_recently?
+  after_validation :get_value
 
   # u = User.find_by(role: 2) (admin user)
   # u.send_message(u, "Hello, someone wants you to approve their points", "User Request")
@@ -24,14 +26,14 @@ class UserEffort < ActiveRecord::Base
   # a.send_message(u, "Sorry, your point request has been declined.", "FictMonies Declined")
 
   def approve
-    self.user.update_attributes(points: self.user.points + self.value)
-    self.update_attributes(status: 'approved')
-    get_admin.send_message(self.user, "Congrats, your points have been approved!", "Point Request")
+    user.update_attributes(points: user.points + value)
+    update_attributes(status: 'approved')
+    get_admin.send_message(user, "Congrats, your points have been approved!", "Point Request")
   end
 
   def decline
-    self.update_attributes(status: 'declined')
-    get_admin.send_message(self.user, "Sorry, your points have been declined.", "Point Request")
+    update_attributes(status: 'declined')
+    get_admin.send_message(user, "Sorry, your points have been declined.", "Point Request")
   end
 
   private
@@ -40,8 +42,23 @@ class UserEffort < ActiveRecord::Base
     User.find_by(role: 2)
   end
 
+  def is_effort_repeatable?
+    u = User.find user
+    if u.user_efforts.any? {|x| x.effort == self.effort }
+      unless effort.repeatable
+        errors.add(:effort, "cannot be repeated.")
+      end
+    end
+  end
+
+  # def completed_recently?
+  #   unless effort.repeatable?
+  #     errors.add(:completed_recently, "You haven't waited a week, try again later.")
+  #   end
+  # end
+
   def get_value
-    self.value = Effort.find(self.effort_id).value
+    self.value = Effort.find(effort_id).value
   end
 
 end

@@ -6,7 +6,7 @@
       %table
         %thead
           %tr
-            %th{width: 200} User Name
+            %th{width: 200} User Email
             %th{width: 200} Effort Type
             %th{width: 200} Effort Value
             %th{width: 200} Effort Screenshot
@@ -14,7 +14,7 @@
         %tbody
           - @pending.each do |effort|
             %tr
-              %td #{effort.user.name}
+              %td #{effort.user.email}
               %td #{effort.effort.name}
               %td #{effort.value} Points
               %td

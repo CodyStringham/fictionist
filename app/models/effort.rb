@@ -2,11 +2,15 @@ class Effort < ActiveRecord::Base
 
   has_many :user_efforts
 
-  KINDS = [:spotify_playlist, :blog_post, :facebook_like, :twitter_like, :instagram_like, :youtube_like, :facebook_post, :twitter_post, :instagram_post, :youtube_post]
+  ONETIME = [:facebook_like, :twitter_like, :instagram_like, :youtube_like]
 
-  SPECIALS = [:share_location, :request_a_concert, :upload_content]
+  REPEATABLE = [:spotify_playlist, :blog_post, :facebook_post, :twitter_post, :instagram_post, :youtube_post]
 
-  enum kind: KINDS + SPECIALS
+  SPECIALS = [:share_location, :request_venue, :upload_content]
+
+  KINDS = ONETIME + REPEATABLE + SPECIALS
+
+  enum kind: KINDS
 
   # VENUES = [:denver, :salt_lake_city, :orem, :reno, :boise, :portland, :las_vegas]
 
@@ -16,10 +20,12 @@ end
 #
 # Table name: efforts
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  kind       :integer
-#  value      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string
+#  kind         :integer
+#  value        :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  repeatable   :boolean
+#  completed_on :datetime
 #

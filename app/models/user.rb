@@ -155,4 +155,5 @@ end
 #  invited_by_type        :string
 #  invitations_count      :integer          default("0")
 #  points                 :integer          default("0")
+#  preferred_location     :integer
 #
