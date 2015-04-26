@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   devise_for :users,
-              :controllers => { omniauth_callbacks: 'omniauth_callbacks' },
+              controllers: { omniauth_callbacks: 'omniauth_callbacks' },
               path: '',
               path_names: {
                 sign_in: 'sign-in',
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users
   post '/users/:id/update_points', to: 'users#update_points', as: :update_points
   post '/new-user', to: 'users#invite_new_user', as: :invite
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
 
   # points
   resources :points, only: [:index]
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     mount Upmin::Engine => '/admin'
 
     # uploads
-    resources :uploads
+    resources :uploads, as: :contents
 
     # efforts
     resources :efforts, except: [:show, :new, :create, :destroy]
@@ -50,7 +50,7 @@ end
 #         new_user_session GET       /sign-in(.:format)                 devise/sessions#new
 #             user_session POST      /sign-in(.:format)                 devise/sessions#create
 #     destroy_user_session DELETE    /sign-out(.:format)                devise/sessions#destroy
-#  user_omniauth_authorize GET|POST  /auth/:provider(.:format)          omniauth_callbacks#passthru {:provider=>/facebook|twitter/}
+#  user_omniauth_authorize GET|POST  /auth/:provider(.:format)          omniauth_callbacks#passthru {provider: /facebook|twitter/}
 #   user_omniauth_callback GET|POST  /auth/:action/callback(.:format)   omniauth_callbacks#:action
 #            user_password POST      /password(.:format)                devise/passwords#create
 #        new_user_password GET       /password/new(.:format)            devise/passwords#new

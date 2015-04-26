@@ -1,3 +1,3 @@
 Upmin.configure do |config|
-  config.models = [:content, :user]
+  # config.models = [:content, :user]
 end

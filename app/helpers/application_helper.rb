@@ -12,7 +12,7 @@ module ApplicationHelper
       elsif asset_object.asset_content_type =~ %r{application/pdf}
       end
     else
-      content_tag(:div, asset_object.message, class: 'item text')
+      content_tag(:div, content_tag(:h3, asset_object.message, class: 'text'), class: 'item text-div')
       # assume it is a text message and display some type of block with text?
     end
   end

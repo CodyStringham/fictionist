@@ -4,7 +4,7 @@
 
       %h1 Your Uploaded Content
       .margin-bottom-40
-        = link_to "New Content", new_upload_path, class: 'f-btn-primary'
+        = link_to "New Content", new_content_path, class: 'f-btn-primary'
 
       %table
         %thead
@@ -19,6 +19,6 @@
               %td
                 = place_asset(content)
               %td
-                = link_to "Edit", edit_upload_path(content), class: 'f-btn-primary small'
+                = link_to "Edit", edit_content_path(content), class: 'f-btn-primary small'
 
 

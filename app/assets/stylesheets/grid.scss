@@ -13,10 +13,21 @@
         left: auto !important;
         top: auto !important;
         width: 100%;
-        img {
+        img, .text-div {
           margin: 0 auto;
         }
       }
     }
+  }
+}
+// keeping it outside because it can be used in more places then the grid
+div.item.text-div {
+  min-height: 170px;
+  min-width: 170px;
+  background-color: black;
+
+  h3.text{
+    color: white;
+    padding: 10px;
   }
 }

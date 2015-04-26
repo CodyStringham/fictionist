@@ -1,4 +1,4 @@
-= simple_form_for @content, url: uploads_path do |f|
+= simple_form_for @content do |f|
   .form-group
     = f.input :message
   .form-group
@@ -11,6 +11,11 @@
   .form-group
     = place_asset(f.object)
     = f.input :asset
+  .form-group
+    %label
+      = 'View Permission'
+    .enum
+      = f.collection_select :view_permission, Content.view_permissions, :first, :first
   .form-group
     = f.input :value
   .form-group
