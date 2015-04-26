@@ -13,6 +13,7 @@
 #  effort_id               :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  completed_at            :datetime
 #
 
 FactoryGirl.define do

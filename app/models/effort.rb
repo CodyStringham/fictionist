@@ -20,12 +20,11 @@ end
 #
 # Table name: efforts
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  kind         :integer
-#  value        :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  repeatable   :boolean
-#  completed_on :datetime
+#  id         :integer          not null, primary key
+#  name       :string
+#  kind       :integer
+#  value      :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  repeatable :boolean
 #

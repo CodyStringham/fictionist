@@ -12,7 +12,9 @@ class UserEffort < ActiveRecord::Base
 
   validates_attachment_content_type :screenshot, content_type: ["image/jpg", "image/jpeg", "image/png"]
   validates :user_id, :effort_id, :screenshot, presence: true
+
   validate :is_effort_repeatable?, on: :create
+  validate :its_been_a_week?, on: :create
 
   # after_validation :completed_recently?
   after_validation :get_value
@@ -27,7 +29,7 @@ class UserEffort < ActiveRecord::Base
 
   def approve
     self.user.update_attributes(points: user.points + value)
-    self.update_attributes(status: 'approved')
+    self.update_attributes(status: 'approved', completed_at: Time.now.utc)
     get_admin.send_message(user, "Congrats, your points have been approved!", "Point Request")
   end
 
@@ -50,11 +52,13 @@ class UserEffort < ActiveRecord::Base
     end
   end
 
-  # def completed_recently?
-  #   unless effort.repeatable?
-  #     errors.add(:completed_recently, "You haven't waited a week, try again later.")
-  #   end
-  # end
+  def its_been_a_week?
+    last_effort = User.find(user.id).user_efforts.where(effort_id: effort.id).order(completed_at: :desc).first
+    unless last_effort.completed_at <= Time.now.utc - 7.days
+      resets_at = last_effort.completed_at + 7.days
+      errors.add(:effort, "cannot be resubmitted until #{resets_at.strftime("%B %-d, %Y - %-l:%M %p")}")
+    end
+  end
 
   def get_value
     self.value = Effort.find(effort_id).value
@@ -77,4 +81,5 @@ end
 #  effort_id               :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  completed_at            :datetime
 #
