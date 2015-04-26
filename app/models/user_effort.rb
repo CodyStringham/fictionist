@@ -12,7 +12,7 @@ class UserEffort < ActiveRecord::Base
 
   validates_attachment_content_type :screenshot, content_type: ["image/jpg", "image/jpeg", "image/png"]
   validates :user_id, :effort_id, :screenshot, presence: true
-  validate :is_effort_repeatable?
+  validate :is_effort_repeatable?, on: :create
 
   # after_validation :completed_recently?
   after_validation :get_value
@@ -26,13 +26,13 @@ class UserEffort < ActiveRecord::Base
   # a.send_message(u, "Sorry, your point request has been declined.", "FictMonies Declined")
 
   def approve
-    user.update_attributes(points: user.points + value)
-    update_attributes(status: 'approved')
+    self.user.update_attributes(points: user.points + value)
+    self.update_attributes(status: 'approved')
     get_admin.send_message(user, "Congrats, your points have been approved!", "Point Request")
   end
 
   def decline
-    update_attributes(status: 'declined')
+    self.update_attributes(status: 'declined')
     get_admin.send_message(user, "Sorry, your points have been declined.", "Point Request")
   end
 
@@ -43,8 +43,7 @@ class UserEffort < ActiveRecord::Base
   end
 
   def is_effort_repeatable?
-    u = User.find user
-    if u.user_efforts.any? {|x| x.effort == self.effort }
+    if User.find(user.id).user_efforts.any? {|x| x.effort == self.effort }
       unless effort.repeatable
         errors.add(:effort, "cannot be repeated.")
       end
