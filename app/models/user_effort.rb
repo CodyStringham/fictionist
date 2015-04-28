@@ -16,16 +16,7 @@ class UserEffort < ActiveRecord::Base
   validate :is_effort_repeatable?, on: :create
   validate :its_been_a_week?, on: :create
 
-  # after_validation :completed_recently?
   after_validation :get_value
-
-  # u = User.find_by(role: 2) (admin user)
-  # u.send_message(u, "Hello, someone wants you to approve their points", "User Request")
-
-  # u = User.find_by(submitted_request: them)
-  # a = User.find_by(role: 2) (admin user)
-  # a.send_message(u, "Congrats! You have been awarded points for doing good things.", "FictMonies Awarded")
-  # a.send_message(u, "Sorry, your point request has been declined.", "FictMonies Declined")
 
   def approve
     self.user.update_attributes(points: user.points + value)

@@ -1,5 +1,15 @@
-- flash.each do |name, msg|
-  - if msg.is_a?(String)
-    %div{:class => "alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
-      = content_tag :div, msg
-      %a.close{:href => "#"} &times;
+
+.notification-container
+  - flash.each do |name, msg|
+    - if msg.is_a?(String)
+      %div{:class => "message-panel alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
+        = content_tag :div, msg
+        %a.close{:href => "#"} &times;
+
+
+  - if user_signed_in?
+    - @notifications.each do |msg|
+      .message-panel.notification-panel
+        = content_tag :div, msg
+        %a.close{:href => "#"} &times;
+

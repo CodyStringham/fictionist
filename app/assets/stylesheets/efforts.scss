@@ -2,4 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.notification-container {
+  position: absolute;
+  z-index: 9999;
+  top: 55px;
+  left: 20px;
+  right: 20px;
+  .message-panel {
+    padding: 20px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+    border: none;
+    position: relative;
+    div {
+      font-size: 0.8125rem;
+      color: #fff;
+    }
+    a.close {
+      font-size: 1.375rem;
+      padding: 0 6px 4px;
+      line-height: .9;
+      position: absolute;
+      top: 50%;
+      margin-top: -0.6875rem;
+      right: 10px;
+      color: #fff;
+      background: transparent;
+      opacity: 1;
+    }
+  }
+  .notification-panel {
+    background: $info-color;
+  }
+}
 
