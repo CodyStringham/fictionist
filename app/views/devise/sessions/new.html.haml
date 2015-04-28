@@ -2,14 +2,14 @@
   .row
     .medium-6.columns
       .authform
-        %h3 Register With:
+        %h3 Sign in with:
         .margin-bottom-40
           = link_to user_omniauth_authorize_path('twitter'), class: 'f-btn-primary icon margin-right-10' do
             %span.fa.fa-twitter
           = link_to user_omniauth_authorize_path('facebook'), class: 'f-btn-primary icon' do
             %span.fa.fa-facebook
         = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
-          %h3 Sign in
+          %h3 or with:
           = devise_error_messages!
           .form-group
             - if devise_mapping.registerable?

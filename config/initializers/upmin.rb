@@ -17,7 +17,7 @@ module AdminOnly
   def configure_upmin
     User.connection
     Upmin.configure do |config|
-      config.models = [:content, :effort, :redemption, :user]
+      config.models = [:content, :user]
     end
   end
 

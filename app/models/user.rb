@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   validates :points, numericality: { greater_than_or_equal_to: 0 }
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
+  acts_as_messageable
   # u = User.find_by(role: 2) (admin user)
   # u.send_message(u, "Hello, someone wants you to approve their points", "User Request")
 
