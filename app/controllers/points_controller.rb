@@ -16,7 +16,7 @@ class PointsController < ApplicationController
     if @request.save
       redirect_to root_path, notice: 'Points were requested.'
     else
-      redirect_to new_point_path(params[:effort_id]), alert: "#{@request.errors.full_messages.pop}"
+      redirect_to new_point_path(params[:effort_id]), alert: "#{@request.errors.full_messages}"
     end
   end
 

@@ -37,17 +37,24 @@ class UserEffort < ActiveRecord::Base
 
   def is_effort_repeatable?
     if User.find(user.id).user_efforts.any? {|x| x.effort == self.effort }
-      unless effort.repeatable
+      unless self.effort.repeatable
         errors.add(:effort, "cannot be repeated.")
       end
     end
   end
 
   def its_been_a_week?
+    return unless errors.blank?
     last_effort = User.find(user.id).user_efforts.where(effort_id: effort.id).order(completed_at: :desc).first
-    unless last_effort.completed_at <= Time.now.utc - 7.days
-      resets_at = last_effort.completed_at + 7.days
-      errors.add(:effort, "cannot be resubmitted until #{resets_at.strftime("%B %-d, %Y - %-l:%M %p")}")
+    if last_effort
+      if last_effort.completed_at
+        unless last_effort.completed_at <= Time.now.utc - 7.days
+          resets_at = last_effort.completed_at + 7.days
+          errors.add(:effort, "cannot be resubmitted until #{resets_at.strftime("%B %-d, %Y - %-l:%M %p")}")
+        end
+      else
+        errors.add(:effort, "is already pending approval.")
+      end
     end
   end
 
