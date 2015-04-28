@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def mailboxer_email(object)
-    return self.email # return nil if no email to be sent ( unsubscibe ) user.wants_email = true / false ?
+    self.subscribed == true ? (return self.email) : (return nil)
   end
 
   private

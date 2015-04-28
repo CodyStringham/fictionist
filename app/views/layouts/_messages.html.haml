@@ -1,4 +1,3 @@
-
 .notification-container
   - flash.each do |name, msg|
     - if msg.is_a?(String)
@@ -7,7 +6,7 @@
         %a.close{:href => "#"} &times;
 
 
-  - if user_signed_in?
+  - if user_signed_in? && @notifications
     - @notifications.each do |msg|
       .message-panel.notification-panel
         = content_tag :div, msg
