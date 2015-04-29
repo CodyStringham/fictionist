@@ -1,7 +1,10 @@
 class UploadsController < ApplicationController
-
+  before_action :find_content, only: [:show, :edit, :update, :destroy]
   def index
     @contents = Content.all
+  end
+
+  def show
   end
 
   def new
@@ -18,11 +21,9 @@ class UploadsController < ApplicationController
   end
 
   def edit
-    @content = Content.find(params[:id])
   end
 
   def update
-    @content = Content.find(params[:id])
     if @content.update(content_params)
       redirect_to root_path, notice: 'content was updated.'
     else
@@ -31,11 +32,14 @@ class UploadsController < ApplicationController
   end
 
   def destroy
-    @content = Content.find(params[:id])
     @content.delete
   end
 
   private
+
+  def find_content
+    @content = Content.find(params[:id])
+  end
 
   def content_params
     params.require(:content).permit(:message, :asset, :view_permission, :value, :asset_type, :uploader_id, :location)

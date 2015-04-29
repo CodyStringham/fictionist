@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'visitors#index'
-
   devise_for :users,
               controllers: { omniauth_callbacks: 'omniauth_callbacks' },
               path: '',
@@ -12,7 +10,8 @@ Rails.application.routes.draw do
                 password: 'password',
               }
 
-  resources :users
+  resources :users, except: [:new, :create]
+
   post '/users/:id/update_points', to: 'users#update_points', as: :update_points
   post '/new-user', to: 'users#invite_new_user', as: :invite
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
@@ -40,6 +39,8 @@ Rails.application.routes.draw do
     post '/efforts/award/approved/:user_id/:user_effort', to: 'efforts#approve', as: :approve_effort
     post '/efforts/award/declined/:user_id/:user_effort', to: 'efforts#decline', as: :decline_effort
   end
+
+  root to: 'visitors#index'
 
 end
 
