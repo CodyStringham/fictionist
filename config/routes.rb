@@ -26,12 +26,14 @@ Rails.application.routes.draw do
 
   get '/request-venue', to: 'points#request_venue', as: :request_venue
 
+  get '/uploads/:id', to: 'uploads#show', as: :content
+
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do
     mount Upmin::Engine => '/admin'
 
     # uploads
-    resources :uploads, as: :contents
+    resources :uploads, as: :contents, except: :show
 
     # efforts
     resources :efforts, except: [:show, :new, :create, :destroy]

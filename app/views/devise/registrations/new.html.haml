@@ -6,13 +6,13 @@
         = link_to user_omniauth_authorize_path('twitter'), class: 'f-btn-primary icon margin-right-10' do
           %span.fa.fa-twitter
         = link_to user_omniauth_authorize_path('facebook'), class: 'f-btn-primary icon' do
-          %span.fa.fa-facebook
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+          %span.fa.fa-facebook.fa-spin
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form'}) do |f|
         %h3 Or sign up here
         = devise_error_messages!
         .form-group
           = f.label :name
-          = f.text_field :name, :autofocus => true, class: 'form-control'
+          = f.text_field :name, autofocus: true, class: 'form-control'
         .form-group
           = f.label :email
           = f.email_field :email, class: 'form-control'
@@ -22,7 +22,7 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control'
-        = f.submit 'Sign up', :class => 'f-btn-primary right'
+        = f.submit 'Sign up', class: 'f-btn-primary right'
   .medium-6.columns
     %h3 Already a member?
     = link_to "Sign in", new_user_session_path, class: 'f-btn-primary small'

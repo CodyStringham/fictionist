@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %title= content_for?(:title) ? yield(:title) : 'Fictionist'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Fictionist'}"}
+    %meta{name: "description", content: "#{content_for?(:description) ? yield(:description) : 'Fictionist'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -14,6 +14,6 @@
       - unless params['controller'] == 'visitors' && params['action'] == 'sign_in'
         = render 'layouts/navigation'
     = render 'layouts/messages'
-    %main{:role => "main"}
+    %main{role: "main"}
       .margin-vertical-40
         = yield

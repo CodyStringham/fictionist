@@ -6,7 +6,9 @@ module ApplicationHelper
       send(asset_status, asset_object, content_type, asset_size)
     else
       # i feel like just text does nothing when locked unless they want to lock promo codes or something?
-      content_tag(:div, content_tag(:h3, asset_object.message, class: 'text'), class: 'item text-div unlocked')
+      link_to content_path(asset_object) do
+        content_tag(:div, content_tag(:h3, asset_object.message, class: 'text'), class: 'item text-div unlocked')
+      end
     end
   end
 
@@ -28,15 +30,18 @@ module ApplicationHelper
   def unlocked(asset_object, content_type, asset_size)
     # link_to some type of modal to see photos/pdfs and play music / videos with download links
     # link_to asset_object.asset.url, class: "item #{content_type}" do
-    image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} unlocked")
+    link_to content_path(asset_object) do
+      image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} unlocked")
+    end
   end
 
   def locked(asset_object, content_type, asset_size)
     # link_to some type of modal
     # link_to asset_object.asset.url, class: "item #{content_type}" do
     # image_tag("#{content_type}-thumb-locked.png", alt: asset_object.message, class: "item #{content_type} locked")
-    image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} locked")
-    # end
+    link_to content_path(asset_object) do
+      image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} locked")
+    end
   end
 
   def asset_photo(asset_object, asset_size)
