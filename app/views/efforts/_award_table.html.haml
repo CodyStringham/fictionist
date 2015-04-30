@@ -1,0 +1,26 @@
+%table#efforts
+  %thead
+    %tr
+      %th{width: 200} User Email
+      %th{width: 200} Effort Type
+      %th{width: 200} Effort Value
+      %th{width: 200} Effort Screenshot
+      %th{width: 300} Approve / Decline
+  %tbody
+    - @pending.each do |effort|
+      %tr
+        %td #{effort.user.email}
+        %td #{effort.effort.name}
+        %td #{effort.value} Points
+        %td
+          = link_to "", "data-reveal-id" => "screenshotModal#{effort.id}" do
+            = image_tag(effort.screenshot.url(:thumb))
+        %td.approve-decline
+          = simple_form_for :award, url: approve_effort_path(effort.user.id, effort.id), remote: true do |f|
+            = f.submit "Approve", class: 'f-btn-primary small'
+          = simple_form_for :decline, url: decline_effort_path(effort.user.id, effort.id), remote: true do |f|
+            = f.submit "Decline", class: 'f-btn-primary small'
+
+      %div.reveal-modal{"id" => "screenshotModal#{effort.id}", "aria-hidden" => "true", "aria-labelledby" => "screenshotTitle", "data-reveal" => "", :role => "dialog"}
+        = image_tag(effort.screenshot.url(:large), style: 'padding:20px;')
+        %a.close-reveal-modal{"aria-label" => "Close"} &#215;

@@ -13,7 +13,8 @@
     %header
       - unless params['controller'] == 'visitors' && params['action'] == 'sign_in'
         = render 'layouts/navigation'
-    = render 'layouts/messages'
+        .notification-container
+          = render 'layouts/messages', locals: { flash: flash }
     %main{role: "main"}
       .margin-vertical-40
         = yield

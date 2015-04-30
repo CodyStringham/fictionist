@@ -5,24 +5,26 @@
 
 .margin-top-40
   .row
-    %h3 Invite a User
-    %p When they accept your invitation and create an account, you will get 50 points!
-    = form_for @new_user, url: invite_path do |f|
-      .row
-        .medium-5.columns
-          .row.collapse
-            .small-3.large-2.columns
-              = f.label :name, class: 'prefix'
-            .small-9.large-10.columns
-              = f.text_field :name
-        .medium-5.columns
-          .row.collapse
-            .small-3.large-2.columns
-              = f.label :email, class: 'prefix'
-            .small-9.large-10.columns
-              = f.text_field :email
-        .medium-2.columns
-          = f.submit 'Send Invitation', class: 'f-btn-primary small'
+    .large-12.columns
+      .panel
+        %h3 Invite a User
+        %p When they accept your invitation and create an account, you will get 50 points!
+        = form_for @new_user, url: invite_path do |f|
+          .row
+            .medium-5.columns
+              .row.collapse
+                .small-3.large-2.columns
+                  = f.label :name, class: 'prefix'
+                .small-9.large-10.columns
+                  = f.text_field :name
+            .medium-5.columns
+              .row.collapse
+                .small-3.large-2.columns
+                  = f.label :email, class: 'prefix'
+                .small-9.large-10.columns
+                  = f.text_field :email
+            .medium-2.columns
+              = f.submit 'Send Invitation', class: 'f-btn-primary small'
 
 .margin-top-40
   .row

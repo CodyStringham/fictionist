@@ -4,10 +4,10 @@
       .authform
         %h3 Sign in with:
         .margin-bottom-40
-          = link_to user_omniauth_authorize_path('twitter'), class: ' fa-spin f-btn-primary icon margin-right-10' do
-            %span.fa.fa-twitter.fa-pulse
+          = link_to user_omniauth_authorize_path('twitter'), class: 'f-btn-primary icon margin-right-10' do
+            %span.fa.fa-twitter
           = link_to user_omniauth_authorize_path('facebook'), class: 'f-btn-primary icon' do
-            %span.fa.fa-facebook.fa-spin
+            %span.fa.fa-facebook
         %hr
         = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
           = devise_error_messages!

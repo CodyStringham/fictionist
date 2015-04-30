@@ -8,6 +8,6 @@ $ ->
 
   if $('.notification-panel').is(':visible')
     setTimeout (->
-      $('.notification-container .notification-panel').fadeOut()
+      $('.notification-container .message-panel').fadeOut()
     ), 8000
 

@@ -10,13 +10,18 @@
   right: 20px;
   .message-panel {
     padding: 20px;
-    width: 100%;
+    width: 40%;
+    float: right;
+    @media screen and (max-width: 40em) {
+      width: 100%;
+      float: none;
+    }
     margin-top: 10px;
     margin-bottom: 0;
     border: none;
     position: relative;
     div {
-      font-size: 0.8125rem;
+      font-size: 1rem;
       color: #fff;
     }
     a.close {
@@ -35,5 +40,10 @@
   .notification-panel {
     background: $info-color;
   }
+}
+
+.approve-decline form {
+  float: left;
+  margin: 5px;
 }
 

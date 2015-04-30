@@ -14,9 +14,11 @@ class PointsController < ApplicationController
   def create
     @request = current_user.user_efforts.new(request_params)
     if @request.save
-      redirect_to root_path, notice: 'Points were requested.'
+      redirect_to points_path, notice: 'Points were requested.'
     else
-      redirect_to new_point_path(params[:effort_id]), alert: "#{@request.errors.full_messages}"
+      errors = ""
+      @request.errors.full_messages.each {|x| errors += "#{x} "}
+      redirect_to new_point_path(params[:effort_id]), alert: errors
     end
   end
 
