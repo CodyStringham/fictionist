@@ -1,7 +1,10 @@
-$(document).ready ->
+$ ->
   if (contentGrid = $ '#fictionist-grid').length
     contentGrid.imagesLoaded ->
-      contentGrid.doMasonry()
+      contentGrid.masonry
+        itemSelector: '.box'
+        isFitWidth: true
+        columnWidth: 100
 
     $('.filter-btn').on 'click', (e) ->
       e.preventDefault()
@@ -16,9 +19,6 @@ $(document).ready ->
       else if $(@).attr('href') == 'filter_all'
         $('.item.photo').show().parent().parent().css({margin:'5px', padding:'5px'})
         $('.item.music').show().parent().parent().css({margin:'5px', padding:'5px'})
-      contentGrid.doMasonry()
-
-    $.fn.doMasonry = () ->
       contentGrid.masonry
         itemSelector: '.box'
         isFitWidth: true
