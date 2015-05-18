@@ -21,12 +21,12 @@ class UserEffort < ActiveRecord::Base
   def approve
     self.user.update_attributes(points: user.points + value)
     self.update_attributes(status: 'approved', completed_at: Time.now.utc)
-    get_admin.send_message(user, "Congrats, your points have been approved!", "Point Request")
+    get_admin.send_message(user, "Congrats, your #{Effort.find(effort_id).name} has been approved!", "Point Request")
   end
 
   def decline
     self.update_attributes(status: 'declined')
-    get_admin.send_message(user, "Sorry, your points have been declined.", "Point Request")
+    get_admin.send_message(user, "Sorry, your #{Effort.find(effort_id).name} has been declined.", "Point Request")
   end
 
   private
