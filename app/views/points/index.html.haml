@@ -31,20 +31,56 @@
     .large-6.columns
       %h3 Repeatable Efforts
       %ul.effort-list
-        %li= link_to("Create a Spotify playlist", new_point_path(get_effort("spotify_playlist")), class: 'f-btn-primary') if get_effort("spotify_playlist")
-        %li= link_to("Create a blog post", new_point_path(get_effort("blog_post")), class: 'f-btn-primary') if get_effort("blog_post")
-        %li= link_to("Post about us on Facebook", new_point_path(get_effort("facebook_post")), class: 'f-btn-primary') if get_effort("facebook_post")
-        %li= link_to("Tweet about us on Twitter", new_point_path(get_effort("twitter_post")), class: 'f-btn-primary') if get_effort("twitter_post")
-        %li= link_to("Post about us on Instagram", new_point_path(get_effort("instagram_post")), class: 'f-btn-primary') if get_effort("instagram_post")
-        %li= link_to("Make a YouTube video", new_point_path(get_effort("youtube_post")), class: 'f-btn-primary') if get_effort("youtube_post")
-        -# %li= link_to("Upload a song or picture", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') if get_effort("facebook_like")
+        %li
+          = link_to(new_point_path(get_effort("spotify_playlist")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-spotify
+            Create a playlist
+        %li
+          = link_to(new_point_path(get_effort("blog_post")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-pencil
+            Write a blog post
+        %li
+          = link_to(new_point_path(get_effort("facebook_post")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-facebook
+            Post about us
+        %li
+          = link_to(new_point_path(get_effort("twitter_post")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-twitter
+            Tweet about us
+        %li
+          = link_to(new_point_path(get_effort("instagram_post")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-instagram
+            Post about us
+        %li
+          = link_to(new_point_path(get_effort("youtube_post")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-youtube
+            Make a video
+        -# %li= link_to("Upload a song or picture", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') do
 
     .large-6.columns
       %h3 One-time Efforts
       %ul.effort-list
-        %li= link_to "Share your location", share_location_path, class: 'f-btn-primary'
-        %li= link_to "Request a venue", request_venue_path, class: 'f-btn-primary'
-        %li= link_to("Like us on Facebook", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') if get_effort("facebook_like")
-        %li= link_to("Follow us on Twitter", new_point_path(get_effort("twitter_like")), class: 'f-btn-primary') if get_effort("twitter_like")
-        %li= link_to("Follow us on Instagram", new_point_path(get_effort("instagram_like")), class: 'f-btn-primary') if get_effort("instagram_like")
-        %li= link_to("Subscribe to our YouTube channel", new_point_path(get_effort("youtube_like")), class: 'f-btn-primary') if get_effort("youtube_like")
+        %li
+          = link_to share_location_path, class: 'f-btn-primary' do
+            %span.effort-badge.fa.fa-location-arrow
+            Share your location
+        %li
+          = link_to request_venue_path, class: 'f-btn-primary' do
+            %span.effort-badge.fa.fa-music
+            Request a venue
+        %li
+          = link_to(new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-facebook
+            Like us
+        %li
+          = link_to(new_point_path(get_effort("twitter_like")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-twitter
+            Follow us
+        %li
+          = link_to(new_point_path(get_effort("instagram_like")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-instagram
+            Follow us
+        %li
+          = link_to(new_point_path(get_effort("youtube_like")), class: 'f-btn-primary') do
+            %span.effort-badge.fa.fa-youtube
+            Subscribe

@@ -7,9 +7,23 @@
   padding-left: 0;
   margin-left: 0;
   li {
-    margin: 5px 0;
+    position: relative;
+    margin: 40px 0;
+    .effort-badge {
+      text-align: center;
+      position: absolute;
+      font-size: 2em;
+      padding: 20px 0;
+      width: 75px;
+      height: 75px;
+      left: -7px;
+      top: -15px;
+      background: black;
+      color: white;
+    }
     a {
-      width: 100%;
+      width: 90%;
+      margin-left: 10%;
       text-align: center;
     }
   }
