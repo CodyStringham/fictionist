@@ -6,7 +6,7 @@ class ContentsController < ApplicationController
   end
 
   def show
-    unless @content.users.any? {|x| x == current_user}
+    unless @content.users.any? {|x| x == current_user} || @content.view_permission == "free"
       redirect_to purchase_content_path(@content.id)
     end
   end
