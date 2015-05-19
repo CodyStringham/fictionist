@@ -26,14 +26,17 @@ Rails.application.routes.draw do
 
   get '/request-venue', to: 'points#request_venue', as: :request_venue
 
-  get '/uploads/:id', to: 'uploads#show', as: :content
+  get '/uploads/:id', to: 'contents#show', as: :content
+
+  get '/uploads/:id/purchase', to: 'contents#purchase', as: :purchase_content
+  post '/uploads/:id/purchase', to: 'contents#redeem_points', as: :redemptions
 
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do
     mount Upmin::Engine => '/admin'
 
     # uploads
-    resources :uploads, as: :contents, except: :show
+    resources :contents, except: :show
 
     # efforts
     resources :efforts, except: [:show, :new, :create, :destroy]

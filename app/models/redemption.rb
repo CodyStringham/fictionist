@@ -1,6 +1,23 @@
 class Redemption < ActiveRecord::Base
   belongs_to :user
   belongs_to :content
+
+  validates :user_id, :content_id, :value, presence: true
+  validate :has_enough_points?, on: :create
+
+  after_validation :burn_points
+
+  def has_enough_points?
+    unless User.find(user_id).points >= value
+      errors.add(:redemption, "You don't have enough points.")
+    end
+  end
+
+  def burn_points
+    user = User.find user_id
+    user.update_attributes(points: user.points -= value)
+  end
+
 end
 
 # == Schema Information

@@ -1,0 +1,13 @@
+.margin-top-40
+  .row
+    .large-12.columns
+
+      %h1 Purchase content
+      %p
+        Are you sure you want to purcahse this content for
+        %strong #{@content.value} points?
+
+      = simple_form_for @redemption do |f|
+        = f.submit "Redeem Now", class: 'f-btn-primary'
+
+

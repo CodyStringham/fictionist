@@ -1,5 +1,7 @@
 class Content < ActiveRecord::Base
   belongs_to :user
+  has_many :redemptions
+  has_many :users, through: :redemptions
 
   enum view_permission: [:free, :points] #:vip_only, :vip_or_points, :paid
   enum asset_type: [:photo, :music, :video, :pdf, :text]

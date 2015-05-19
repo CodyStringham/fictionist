@@ -25,6 +25,7 @@ User.where(role: 1).each do |user|
     a.message = FFaker::Lorem.sentence
     a.published_at = Time.now
     a.view_permission = ['free', 'points'].sample
+    a.value = rand(50..250)
     if rand(0..10).odd?
       puts "creating mp3"
       a.asset = File.open("#{Rails.root}/app/assets/music/creep.mp3")
