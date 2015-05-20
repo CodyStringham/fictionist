@@ -18,10 +18,13 @@
       %hr
       .margin-top-40
       %h3 Purchased Content
+
       - if current_user.purchased_contents.any?
-        - current_user.purchased_contents.all.each do |content|
-          .box.col2
-            = place_asset(content)
+        .grid-container.margin-top-40
+          #fictionist-grid.transitions-enabled.centered.clearfix
+            - current_user.purchased_contents.all.each do |content|
+              .box.col2
+                = place_asset(content)
 
       - else
         %p You haven't spent any points yet!

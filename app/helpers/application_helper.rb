@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def asset_check(asset_object)
     # do more logic here to check if user has unlocked it if it is locked
-    asset_object.free? ? 'unlocked' : 'locked'
+    asset_object.free? || asset_object.users.any? {|x| x == current_user} ? 'unlocked' : 'locked'
   end
 
   def unlocked(asset_object, content_type, asset_size)
@@ -40,8 +40,12 @@ module ApplicationHelper
     # link_to asset_object.asset.url, class: "item #{content_type}" do
     # image_tag("#{content_type}-thumb-locked.png", alt: asset_object.message, class: "item #{content_type} locked")
     link_to content_path(asset_object) do
-      image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} locked")
+      image_tag(send("asset_locked", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} locked")
     end
+  end
+
+  def asset_locked(asset_object, asset_size)
+    'locked-thumb.png'
   end
 
   def asset_photo(asset_object, asset_size)
