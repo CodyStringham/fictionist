@@ -12,14 +12,20 @@
     .effort-badge {
       text-align: center;
       position: absolute;
-      font-size: 2em;
-      padding: 20px 0;
+      font-size: 1.75em;
+      padding: 25px 0 0;
       width: 75px;
       height: 75px;
       left: -7px;
       top: -15px;
       background: black;
       color: white;
+      &.pending {
+        background: $warning-color
+      }
+      &.completed {
+        background: $success-color
+      }
     }
     a {
       width: 90%;
