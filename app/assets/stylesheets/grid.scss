@@ -4,11 +4,23 @@
   padding: 10px;
 
   #fictionist-grid {
-    .box {
+    .grid-box {
       background: transparent;
+      position: relative;
+      .hover-caption {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.75);
+        color: white;
+        margin: 5px;
+        padding: 10px 20px;
+      }
     }
     @media (max-width: 40em) {
-      .box {
+      .grid-box {
         position: static !important;
         left: auto !important;
         top: auto !important;

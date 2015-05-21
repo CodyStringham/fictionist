@@ -1,10 +1,14 @@
 .grid-container.margin-top-40
   .text-center.margin-vertical-20
     %a.f-btn-primary.filter-btn.small.active{href: "filter_all"} All
+    %a.f-btn-primary.filter-btn.small{href: "filter_video"} Video
     %a.f-btn-primary.filter-btn.small{href: "filter_images"} Images
     %a.f-btn-primary.filter-btn.small{href: "filter_music"} Music
+
   #hidden-grid.hide
   #fictionist-grid.transitions-enabled.centered.clearfix
     - Content.all.each do |content|
-      .box.col2
+      .box.col2.grid-box
+        .hover-caption
+          %span= content.message
         = place_asset(content)

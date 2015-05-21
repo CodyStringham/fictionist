@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get '/request-venue', to: 'points#request_venue', as: :request_venue
 
-  get '/uploads/:id', to: 'contents#show', as: :content
+  get '/content/:id', to: 'contents#show', as: :content
 
   get '/uploads/:id/purchase', to: 'contents#purchase', as: :purchase_content
   post '/uploads/:id/purchase', to: 'contents#redeem_points', as: :redemptions

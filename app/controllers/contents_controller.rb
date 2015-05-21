@@ -42,7 +42,7 @@ class ContentsController < ApplicationController
 
   def update
     if @content.update(content_params)
-      redirect_to root_path, notice: 'content was updated.'
+      redirect_to contents_path, notice: 'content was updated.'
     else
       render 'edit'
     end
@@ -59,7 +59,7 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    params.require(:content).permit(:message, :asset, :view_permission, :value, :asset_type, :uploader_id, :location)
+    params.require(:content).permit(:message, :asset, :view_permission, :value, :asset_type, :uploader_id, :location, :embed_link)
   end
 
 end

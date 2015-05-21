@@ -8,7 +8,7 @@ module ApplicationHelper
       # i feel like just text does nothing when locked unless they want to lock promo codes or something?
       link_to content_path(asset_object) do
         content_tag(:div, content_tag(:h3, asset_object.message, class: 'text'), class: 'item text-div unlocked')
-      end
+      end if asset_object.id
     end
   end
 
@@ -30,6 +30,8 @@ module ApplicationHelper
   def unlocked(asset_object, content_type, asset_size)
     # link_to some type of modal to see photos/pdfs and play music / videos with download links
     # link_to asset_object.asset.url, class: "item #{content_type}" do
+    content_type = 'video' if asset_object.embed_link # temp fix
+
     link_to content_path(asset_object) do
       image_tag(send("asset_#{content_type}", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} unlocked")
     end
@@ -39,13 +41,19 @@ module ApplicationHelper
     # link_to some type of modal
     # link_to asset_object.asset.url, class: "item #{content_type}" do
     # image_tag("#{content_type}-thumb-locked.png", alt: asset_object.message, class: "item #{content_type} locked")
+    content_type = 'video' if asset_object.embed_link # temp fix
+
     link_to content_path(asset_object) do
       image_tag(send("asset_locked", asset_object, asset_size), alt: asset_object.message, class: "item #{content_type} locked")
-    end
+    end if asset_object.id
   end
 
   def asset_locked(asset_object, asset_size)
     'locked-thumb.png'
+  end
+
+  def asset_video(asset_object, asset_size)
+    'video-thumb.png'
   end
 
   def asset_photo(asset_object, asset_size)
