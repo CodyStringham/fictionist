@@ -32,9 +32,8 @@ $ ->
         isFitWidth: true
         columnWidth: 100
 
-    $('.grid-box').on 'mouseenter mouseleave', ->
-      captionBox = $(@).children('.hover-caption')
-      if captionBox.is(":visible")
-        $(@).children('.hover-caption').fadeOut()
-      else
-        $(@).children('.hover-caption').fadeIn()
+    $('.grid-box').on 'mouseenter', ->
+      $(@).children('.hover-caption').fadeIn(150)
+
+    $('.grid-box').on 'mouseleave', ->
+      $(@).children('.hover-caption').fadeOut(150)

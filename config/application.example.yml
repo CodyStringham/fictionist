@@ -11,13 +11,6 @@ TWITTER_SECRET:
 FACEBOOK_KEY:
 FACEBOOK_SECRET:
 
-
-# production:
-#   DEFAULT_EMAIL_FROM:
-#   SECRET_TOKEN:
-#   DEVISE_SECRET:
-#   DOMAIN_NAME:
-#   RACK_ENV:                       production
-#   RAILS_ENV:                      production
-#   EMAIL_USERNAME:
-#   EMAIL_PASSWORD:
+S3_BUCKET_NAME:
+AWS_ACCESS_KEY_ID:
+AWS_SECRET_ACCESS_KEY:
