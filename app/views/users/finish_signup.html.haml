@@ -10,7 +10,12 @@
       .form-group
         = f.label :email
         .controls
-          = f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg', placeholder: 'Example: email@me.com'
+          = f.text_field :email, :autofocus => true, :value => '', :required => 'true', class: 'form-control input-lg', placeholder: 'Example: email@me.com'
           %p.help-block Please confirm your email address. No spam.
+      .form-group
+        = f.label :password
+        .controls
+          = f.text_field :password, :value => '', :required => 'true', class: 'form-control input-lg'
+          %p.help-block Please set a default password, you'll need this unless you want to sign in with your social media account.
       .actions
         = f.submit 'Continue', :class => 'f-btn-primary'

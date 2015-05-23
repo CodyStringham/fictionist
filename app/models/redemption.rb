@@ -5,7 +5,7 @@ class Redemption < ActiveRecord::Base
   validates :user_id, :content_id, :value, presence: true
   validate :has_enough_points?, on: :create
 
-  after_validation :burn_points
+  after_create :burn_points
 
   def has_enough_points?
     unless User.find(user_id).points >= value
