@@ -5,32 +5,13 @@
       = link_to share_location_path, class: 'f-btn-primary' do
         %span.effort-badge.fa.fa-location-arrow
         Share your location
+
     %li
       = link_to request_venue_path, class: 'f-btn-primary' do
         %span.effort-badge.fa.fa-music
         Request a venue
-    // Need a better way to find efforts and decide if they are available/pending/completed... especially for repeatable
-    %li
-      = link_to(new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') do
-        - if  current_user.user_efforts.where(effort_id: 1).first
-          %span.effort-badge.fa.fa-clock-o.pending
-          Pending Approval
 
-        - elsif current_user.user_efforts.where(effort_id: 1).first.try(:completed_at)
-          %span.effort-badge.fa.fa-check.completed
-          Awarded!
-        - else
-          %span.effort-badge.fa.fa-facebook
-          Like us
-    %li
-      = link_to(new_point_path(get_effort("twitter_like")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-twitter
-        Follow us
-    %li
-      = link_to(new_point_path(get_effort("instagram_like")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-instagram
-        Follow us
-    %li
-      = link_to(new_point_path(get_effort("youtube_like")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-youtube
-        Subscribe
+    = render 'points/one_time_block', effort_name: 'facebook_like', cta_text: 'Like Us', icon_name: 'facebook'
+    = render 'points/one_time_block', effort_name: 'twitter_like', cta_text: 'Follow Us', icon_name: 'twitter'
+    = render 'points/one_time_block', effort_name: 'instagram_like', cta_text: 'Follow Us', icon_name: 'instagram'
+    = render 'points/one_time_block', effort_name: 'youtube_like', cta_text: 'Subscribe', icon_name: 'youtube'

@@ -1,5 +1,6 @@
 class PointsController < ApplicationController
   before_action :authenticate_user!
+  before_action :gather_efforts, only: :index
 
   def index
     @pending = current_user.user_efforts.pending
@@ -65,6 +66,13 @@ class PointsController < ApplicationController
 
   def location_params
     params.require(:share_location).permit(:preferred_location)
+  end
+
+  def gather_efforts
+    @facebook_like = Effort.where(kind: Effort.kinds[:facebook_like]).first.id
+    @twitter_like = Effort.where(kind: Effort.kinds[:twitter_like]).first.id
+    @instagram_like = Effort.where(kind: Effort.kinds[:instagram_like]).first.id
+    @youtube_like = Effort.where(kind: Effort.kinds[:youtube_like]).first.id
   end
 
   # def enum_title(symbol)
