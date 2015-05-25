@@ -9,6 +9,6 @@
   #fictionist-grid.transitions-enabled.centered.clearfix
     - Content.all.each do |content|
       .box.col2.grid-box
-        .hover-caption
+        = link_to content_path(content.id), class: 'hover-caption' do
           %span= content.message
         = place_asset(content)
