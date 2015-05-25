@@ -1,28 +1,9 @@
 .medium-6.columns
   %h3 Repeatable Efforts
   %ul.effort-list
-    %li
-      = link_to(new_point_path(get_effort("spotify_playlist")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-spotify
-        Create a playlist
-    %li
-      = link_to(new_point_path(get_effort("blog_post")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-pencil
-        Write a blog post
-    %li
-      = link_to(new_point_path(get_effort("facebook_post")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-facebook
-        Post about us
-    %li
-      = link_to(new_point_path(get_effort("twitter_post")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-twitter
-        Tweet about us
-    %li
-      = link_to(new_point_path(get_effort("instagram_post")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-instagram
-        Post about us
-    %li
-      = link_to(new_point_path(get_effort("youtube_post")), class: 'f-btn-primary') do
-        %span.effort-badge.fa.fa-youtube
-        Make a video
-    -# %li= link_to("Upload a song or picture", new_point_path(get_effort("facebook_like")), class: 'f-btn-primary') do
+    = render 'points/repeatable_block', effort_name: 'spotify_playlist', cta_text: 'Create a playlist', icon_name: 'spotify'
+    = render 'points/repeatable_block', effort_name: 'blog_post', cta_text: 'Write a blog post', icon_name: 'pencil'
+    = render 'points/repeatable_block', effort_name: 'facebook_post', cta_text: 'Post about us', icon_name: 'facebook'
+    = render 'points/repeatable_block', effort_name: 'twitter_post', cta_text: 'Post about us', icon_name: 'twitter'
+    = render 'points/repeatable_block', effort_name: 'instagram_post', cta_text: 'Post about us', icon_name: 'instagram'
+    = render 'points/repeatable_block', effort_name: 'youtube_post', cta_text: 'Make a Fictionist video', icon_name: 'youtube'

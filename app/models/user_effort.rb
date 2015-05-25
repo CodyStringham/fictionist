@@ -20,7 +20,7 @@ class UserEffort < ActiveRecord::Base
 
   def approve
     self.user.update_attributes(points: user.points + value)
-    self.update_attributes(status: 'approved', completed_at: Time.now.utc)
+    self.update_attributes(status: 'approved', completed_at: DateTime.now.utc)
     get_admin.send_message(user, "Congrats, your #{Effort.find(effort_id).name} has been approved!", "Point Request")
   end
 
@@ -69,7 +69,7 @@ end
 # Table name: user_efforts
 #
 #  id                      :integer          not null, primary key
-#  status                  :integer          default("0")
+#  status                  :integer          default(0)
 #  value                   :integer
 #  screenshot_file_name    :string
 #  screenshot_content_type :string

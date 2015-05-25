@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post '/share-location', to: 'points#create_share_location', as: :create_share_location
 
   get '/request-venue', to: 'points#request_venue', as: :request_venue
+  post '/request-venue', to: 'points#create_request_venue', as: :create_request_venue
 
   get '/content/:id', to: 'contents#show', as: :content
 

@@ -3,13 +3,21 @@
   %ul.effort-list
     %li
       = link_to share_location_path, class: 'f-btn-primary' do
-        %span.effort-badge.fa.fa-location-arrow
-        Share your location
+        - if current_user.preferred_location
+          %span.effort-badge.fa.fa-check.completed
+          Update preferred location
+        - else
+          %span.effort-badge.fa.fa-location-arrow
+          Share your location
 
     %li
       = link_to request_venue_path, class: 'f-btn-primary' do
-        %span.effort-badge.fa.fa-music
-        Request a venue
+        - if current_user.requested_venue
+          %span.effort-badge.fa.fa-check.completed
+          Update venue request
+        - else
+          %span.effort-badge.fa.fa-music
+          Request a venue
 
     = render 'points/one_time_block', effort_name: 'facebook_like', cta_text: 'Like Us', icon_name: 'facebook'
     = render 'points/one_time_block', effort_name: 'twitter_like', cta_text: 'Follow Us', icon_name: 'twitter'

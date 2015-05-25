@@ -3,7 +3,7 @@
 # Table name: user_efforts
 #
 #  id                      :integer          not null, primary key
-#  status                  :integer          default("0")
+#  status                  :integer          default(0)
 #  value                   :integer
 #  screenshot_file_name    :string
 #  screenshot_content_type :string

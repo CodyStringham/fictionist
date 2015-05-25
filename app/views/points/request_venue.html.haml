@@ -1,0 +1,11 @@
+.row
+  .large-12.columns
+    %h1 Request a venue
+    %p Yay marketing stuff, give points meow
+
+.row
+  .large-12.columns
+    = simple_form_for :request_venue, url: create_request_venue_path do |f|
+      = f.label :requested_venue, "Please enter a city name"
+      = f.input :requested_venue, label: false, input_html: { value: current_user.requested_venue}
+      = f.submit "Requst", class: 'f-btn-primary'

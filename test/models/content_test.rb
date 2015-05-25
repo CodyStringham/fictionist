@@ -28,6 +28,7 @@ end
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
 #  uploader_id        :integer
-#  value              :integer          default("0")
-#  asset_type         :integer          default("0")
+#  value              :integer
+#  asset_type         :integer          default(0)
+#  embed_link         :string
 #

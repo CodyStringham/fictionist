@@ -1,0 +1,15 @@
+%li
+  = link_to(new_point_path(get_effort(effort_name)), class: 'f-btn-primary') do
+    - if user_has_effort?(eval("@#{effort_name}")) &&
+      - if effort_available?(find_effort(eval("@#{effort_name}")))
+        %span{class: "effort-badge fa fa-#{icon_name}"}
+        = cta_text
+      - elsif effort_cooldown?(find_effort(eval("@#{effort_name}")))
+        %span.effort-badge.fa.fa-check.completed
+        Can be redone in #{cooldown_time(find_effort(eval("@#{effort_name}")))} days.
+      - else
+        %span.effort-badge.fa.fa-clock-o.pending
+        Pending Approval
+    - else
+      %span{class: "effort-badge fa fa-#{icon_name}"}
+      = cta_text
