@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :find_content, only: [:show, :purchase, :redeem_points, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:purchase]
+  before_action :authenticate_user!, only: [:redeem_points]
 
   def index
     @contents = Content.all
@@ -13,7 +13,8 @@ class ContentsController < ApplicationController
   end
 
   def purchase
-    @redemption = current_user.redemptions.new()
+    # This allows us to explain things on the purcahse page without being signed in
+    @redemption = current_user ? current_user.redemptions.new() : :redemptions
   end
 
   def redeem_points
