@@ -2,19 +2,24 @@
   .row
     .large-12.columns
 
-      %h1 Show Content
+      %h1= @content.message
 
       // Video Embed
       - if @content.embed_link
         = @content.embed_link.html_safe
 
       // Image Embed
-      -# - if @content.asset_content_type == Thing
-      -#   = image_tag(@content.asset.url(:large))
+      - if @content.asset_content_type == 'image/jpeg'
+        = image_tag(@content.asset.url(:large))
 
       // Music Embed
       - if @content.asset_content_type == 'audio/mpeg'
-        %audio{:controls => ""}
-          %source{:src => "#{@content.asset.url}", :type => "audio/mpeg"}
+        %label.margin-bottom-10 Play Song:
+        %audio{:controls => ''}
+          %source{:src => "#{@content.asset.url}", :type => 'audio/mpeg'}
             Your browser does not support the audio element.
+
+    .large-12.columns.margin-top-40
+      = link_to 'Download', @content.download_url, class: 'f-btn-primary'
+
 

@@ -15,6 +15,15 @@ class Content < ActiveRecord::Base
                     }
   validates_attachment_content_type :asset, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/pdf", "audio/ogg", "applocation/ogg", "audio/mpeg", "audio/mp3"]
 
+  def download_url
+    path_name = self.asset.path
+    path_name[0] = ""
+    S3.objects[ path_name ].url_for( :read,
+      expires_in: 60.minutes,
+      use_ssl:    false,
+      response_content_disposition: "attachment; filename='#{self.asset_file_name}'" ).to_s
+  end
+
 end
 
 # == Schema Information
