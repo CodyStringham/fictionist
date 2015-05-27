@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.mandrillapp.com",
     port: 587,
     domain: ENV['DOMAIN_NAME'],
     authentication: "plain",
