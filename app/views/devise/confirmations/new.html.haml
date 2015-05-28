@@ -1,0 +1,9 @@
+.authform
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    %h3 Resend confirmation instructions
+    = devise_error_messages!
+    = f.hidden_field :reset_password_token
+    .form-group
+      = f.label :email
+      = f.email_field :email, autofocus: true, class: 'form-control'
+    = f.submit 'Resend', :class => 'f-btn-primary right'

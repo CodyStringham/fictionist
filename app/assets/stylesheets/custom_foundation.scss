@@ -17,6 +17,15 @@
   &.expanded ul.title-area {
     background: black;
   }
+  li.name h1 a{
+    font-weight: 800;
+    font-size: 24px;
+    span.thin {
+      font-size: 24px;
+      font-weight: 200;
+      margin-left: -6px;
+    }
+  }
   .top-bar-section li:not(.has-form) a:not(.button):not(.button-xs) {
     background: black;
     span.user-points {
