@@ -51,7 +51,11 @@ class ContentsController < ApplicationController
   end
 
   def destroy
-    @content.delete
+    if @content.delete
+      redirect_to contents_path, notice: "deleted"
+    else
+      render :edit
+    end
   end
 
   private
