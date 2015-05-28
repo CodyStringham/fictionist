@@ -15,6 +15,10 @@ class Content < ActiveRecord::Base
                     }
   validates_attachment_content_type :asset, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/pdf", "audio/ogg", "applocation/ogg", "audio/mpeg", "audio/mp3"]
 
+  has_attached_file :thumbnail,
+                    styles: { thumb: "100x100" }
+  validates_attachment_content_type :thumbnail, content_type: ["image/jpeg", "image/png", "image/jpg", "image/gif"]
+
   def download_url
     path_name = self.asset.path
     path_name[0] = ""

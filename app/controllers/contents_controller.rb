@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :find_content, only: [:show, :purchase, :redeem_points, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:redeem_points]
+  before_action :authenticate_user!, except: [:show, :purchase]
 
   def index
     @contents = Content.all

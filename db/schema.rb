@@ -11,26 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525205110) do
+ActiveRecord::Schema.define(version: 20150528041457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "contents", force: :cascade do |t|
-    t.string   "message",                        null: false
+    t.string   "message",                            null: false
     t.string   "location"
     t.datetime "published_at"
     t.integer  "view_permission"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "uploader_id"
     t.integer  "value"
-    t.integer  "asset_type",         default: 0
+    t.integer  "asset_type",             default: 0
     t.string   "embed_link"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
   end
 
   create_table "efforts", force: :cascade do |t|
