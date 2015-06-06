@@ -49,7 +49,7 @@ class EffortsController < ApplicationController
   private
 
   def effort_params
-    params.require(:effort).permit(:value)
+    params.require(:effort).permit(:desc, :value)
   end
 
   def get_pending

@@ -2,5 +2,7 @@
   .small-12.columns
     %h1 Editing #{@effort.name}
     = simple_form_for @effort do |f|
+      = f.label :desc, "Description"
+      = f.input :desc, label: false, value: @effort.desc
       = f.input :value
       = f.submit "Update", class: 'f-btn-primary'
