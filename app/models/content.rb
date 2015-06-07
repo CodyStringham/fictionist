@@ -6,7 +6,8 @@ class Content < ActiveRecord::Base
   enum view_permission: [:free, :points] #:vip_only, :vip_or_points, :paid
   enum asset_type: [:photo, :music, :video, :pdf, :text]
 
-  validates :asset_type, :message, :uploader_id, presence: true
+  validates :view_permission, :value, :uploader_id, :message, presence: true
+  # validates :asset_type, :message, :uploader_id, presence: true
   # validates_inclusion_of :view_permission, in: ['free', 'points']
 
   has_attached_file :asset,

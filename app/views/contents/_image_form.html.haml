@@ -1,0 +1,29 @@
+%h3 Upload a new image
+= simple_form_for @image_content do |f|
+  .form-group
+    = f.input :message
+  .form-group
+    = f.label :asset, "Image file"
+    = f.input :asset, label: false
+  .form-group
+    = f.input :thumbnail
+
+  .row
+    .medium-4.columns
+      .form-group
+        %label View Permission
+        .enum
+          = f.collection_select :view_permission, Content.view_permissions, :first, :first
+    .medium-4.columns
+      .form-group
+        = f.input :value
+    .medium-4.columns
+      .form-group
+        %label Uploader
+        .enum
+          - if current_user.band_member?
+            = f.collection_select :uploader_id, [[current_user.name, current_user.id]], :last, :first, include_blank: false
+          - else
+            = f.collection_select :uploader_id, User.band_members.order(:name), :id, :name, include_blank: true
+
+  = f.submit class: 'f-btn-primary'

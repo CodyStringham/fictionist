@@ -14,12 +14,14 @@
 
       // Music Embed
       - if @content.asset_content_type == 'audio/mpeg'
-        %label.margin-bottom-10 Play Song:
-        %audio{:controls => ''}
-          %source{:src => "#{@content.asset.url}", :type => 'audio/mpeg'}
-            Your browser does not support the audio element.
+        .margin-top-40
+          = image_tag(@content.thumbnail.url(:thumb))
+          %audio{:controls => ''}
+            %source{:src => "#{@content.asset.url}", :type => 'audio/mpeg'}
+              Your browser does not support the audio element.
 
-    .large-12.columns.margin-top-40
-      = link_to 'Download', @content.download_url, class: 'f-btn-primary'
+    - unless @content.embed_link
+      .large-12.columns.margin-top-40
+        = link_to 'Download', @content.download_url, class: 'f-btn-primary'
 
 

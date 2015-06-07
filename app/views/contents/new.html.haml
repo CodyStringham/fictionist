@@ -1,8 +1,20 @@
 .margin-top-40
   .row
     .large-12.columns
-
       %h1 New Content
 
-      = render 'form'
-
+    .large-12.columns.margin-top-20
+      %ul.tabs{"data-tab" => ""}
+        %li.tab-title.active
+          %a{:href => "#panel1"} Image
+        %li.tab-title
+          %a{:href => "#panel2"} Music
+        %li.tab-title
+          %a{:href => "#panel3"} Video
+      .tabs-content
+        #panel1.content.active
+          = render 'image_form'
+        #panel2.content
+          = render 'music_form'
+        #panel3.content
+          = render 'video_form'

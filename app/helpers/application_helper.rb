@@ -1,6 +1,7 @@
 module ApplicationHelper
-  def place_asset(asset_object, asset_size = 'thumb')
-    if asset_object.asset.exists?
+  def place_asset(asset_object, asset_size = 'thumb', asset_type = 'normal')
+    @asset_type = asset_type
+    if asset_object.asset.exists? || asset_object.thumbnail.exists?
       content_type = asset_type(asset_object.asset_content_type)
       asset_status = asset_check(asset_object)
       send(asset_status, asset_object, content_type, asset_size)
@@ -49,19 +50,35 @@ module ApplicationHelper
   end
 
   def asset_locked(asset_object, asset_size)
-    'locked-thumb.png'
+        if @asset_type == 'thumb'
+      asset_object.thumbnail.url(:thumb)
+    else
+      'locked-thumb.png'
+    end
   end
 
   def asset_video(asset_object, asset_size)
-    'video-thumb.png'
+    if @asset_type == 'thumb'
+      asset_object.thumbnail.url(:thumb)
+    else
+      'video-thumb.png'
+    end
   end
 
   def asset_photo(asset_object, asset_size)
-    asset_object.asset.url(asset_size.to_sym)
+    if @asset_type == 'thumb'
+      asset_object.thumbnail.url(:thumb)
+    else
+      asset_object.asset.url(asset_size.to_sym)
+    end
   end
 
   def asset_music(asset_object, asset_size)
-    'music-thumb.png'
+    if @asset_type == 'thumb'
+      asset_object.thumbnail.url(:thumb)
+    else
+      'music-thumb.png'
+    end
   end
 
   def asset_pdf(asset_object, asset_size)

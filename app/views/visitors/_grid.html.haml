@@ -11,4 +11,4 @@
       .box.col2.grid-box
         = link_to content_path(content.id), class: 'hover-caption' do
           %span= content.message
-        = place_asset(content)
+        = place_asset(content, nil, 'thumb')

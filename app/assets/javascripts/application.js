@@ -5,6 +5,7 @@
 //= require foundation/foundation.topbar
 //= require foundation/foundation.reveal
 //= require foundation/foundation.alert
+//= require foundation/foundation.tab
 //= require foundation/foundation.dropdown
 //= require masonry/jquery.masonry
 //= require masonry/jquery.event-drag

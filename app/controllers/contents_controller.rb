@@ -27,7 +27,9 @@ class ContentsController < ApplicationController
   end
 
   def new
-    @content = current_user.uploaded_contents.new
+    @video_content = current_user.uploaded_contents.new(asset_type: 'video')
+    @music_content = current_user.uploaded_contents.new(asset_type: 'music')
+    @image_content = current_user.uploaded_contents.new(asset_type: 'photo')
   end
 
   def create
@@ -65,7 +67,7 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    params.require(:content).permit(:message, :asset, :view_permission, :value, :asset_type, :uploader_id, :location, :embed_link)
+    params.require(:content).permit(:message, :asset, :thumbnail, :view_permission, :value, :asset_type, :uploader_id, :location, :embed_link)
   end
 
 end

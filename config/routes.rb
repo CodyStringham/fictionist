@@ -30,9 +30,6 @@ Rails.application.routes.draw do
   get '/uploads/:id/purchase', to: 'contents#purchase', as: :purchase_content
   post '/uploads/:id/purchase', to: 'contents#redeem_points', as: :redemptions
 
-  # Content
-  resources :contents, only: :show
-
   # admin
   authenticated :user, lambda {|u| u.admin? || u.band_member? } do
     mount Upmin::Engine => '/admin'
@@ -46,6 +43,9 @@ Rails.application.routes.draw do
     post '/efforts/award/approved/:user_id/:user_effort', to: 'efforts#approve', as: :approve_effort
     post '/efforts/award/declined/:user_id/:user_effort', to: 'efforts#decline', as: :decline_effort
   end
+
+  # Content
+  resources :contents, only: :show
 
   root to: 'visitors#index'
 

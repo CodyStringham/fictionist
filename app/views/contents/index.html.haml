@@ -17,7 +17,7 @@
             %tr
               %td= content.message
               %td
-                = place_asset(content)
+                = place_asset(content, nil, 'thumb')
               %td
                 = link_to "Edit", edit_content_path(content), class: 'f-btn-primary small'
                 = link_to content_path(content), :confirm => 'Are you sure?', :method => :delete, class: 'f-btn-primary icon' do
