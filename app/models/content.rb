@@ -4,9 +4,9 @@ class Content < ActiveRecord::Base
   has_many :users, through: :redemptions
 
   enum view_permission: [:free, :points] #:vip_only, :vip_or_points, :paid
-  enum asset_type: [:photo, :music, :video, :pdf, :text]
+  enum asset_type: [:image, :music, :video, :pdf, :text]
 
-  validates :view_permission, :value, :uploader_id, :message, presence: true
+  validates :view_permission, :value, :uploader_id, :message, :asset_type, presence: true
   # validates :asset_type, :message, :uploader_id, presence: true
   # validates_inclusion_of :view_permission, in: ['free', 'points']
 

@@ -27,9 +27,7 @@ class ContentsController < ApplicationController
   end
 
   def new
-    @video_content = current_user.uploaded_contents.new(asset_type: 'video')
-    @music_content = current_user.uploaded_contents.new(asset_type: 'music')
-    @image_content = current_user.uploaded_contents.new(asset_type: 'photo')
+    @content = current_user.uploaded_contents.new
   end
 
   def create

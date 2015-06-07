@@ -1,5 +1,5 @@
 %h3 Upload a new image
-= simple_form_for @image_content do |f|
+= simple_form_for @content do |f|
   .form-group
     = f.input :message
   .form-group
@@ -7,6 +7,9 @@
     = f.input :asset, label: false
   .form-group
     = f.input :thumbnail
+
+  .hide
+    = f.text_field :asset_type, value: 'image'
 
   .row
     .medium-4.columns

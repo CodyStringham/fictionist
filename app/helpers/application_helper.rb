@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def asset_type(content_type)
     case content_type
-    when %r{image} then 'photo'
+    when %r{image} then 'image'
     when %r{audio|applocation/ogg} then 'music'
     when %r{application/pdf} then 'pdf'
     end
@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def unlocked(asset_object, content_type, asset_size)
-    # link_to some type of modal to see photos/pdfs and play music / videos with download links
+    # link_to some type of modal to see images/pdfs and play music / videos with download links
     # link_to asset_object.asset.url, class: "item #{content_type}" do
     content_type = 'video' if asset_object.embed_link # temp fix
 
@@ -65,7 +65,7 @@ module ApplicationHelper
     end
   end
 
-  def asset_photo(asset_object, asset_size)
+  def asset_image(asset_object, asset_size)
     if @asset_type == 'thumb'
       asset_object.thumbnail.url(:thumb)
     else

@@ -13,7 +13,7 @@
         = image_tag(@content.asset.url(:large))
 
       // Music Embed
-      - if @content.asset_content_type == 'audio/mpeg'
+      - if @content.asset_content_type == 'audio/mpeg' || @content.asset_content_type == 'audio/mp3'
         .margin-top-40
           = image_tag(@content.thumbnail.url(:thumb))
           %audio{:controls => ''}
