@@ -9,15 +9,31 @@
   }
   a.register-link {
     padding: 0 0.4rem;
+    span.f-btn-primary {
+      @media screen and (max-width: 40em) {
+        border-color: white;
+        border-width: 2px;
+        margin-bottom: 10px;
+        color: white;
+      }
+    }
   }
 }
 
 .top-bar {
-  background: black;
+  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  @media screen and (min-width: 40em) {
+    border-bottom: 5px solid black;
+    padding: 20px 0;
+    height: 80px;
+  }
   &.expanded ul.title-area {
-    background: black;
+    background: transparent;
   }
   li.name h1 a{
+    color: black;
     font-weight: 800;
     font-size: 24px;
     span.thin {
@@ -27,15 +43,35 @@
     }
   }
   .top-bar-section li:not(.has-form) a:not(.button):not(.button-xs) {
-    background: black;
-    span.user-points {
-      color: white;
-      font-weight: 800;
-    }
-    &:hover {
-      background: lighten(black, 20%);
+    @media screen and (min-width: 40em) {
+      background: white;
+      color: black;
+      width: 150px;
+      span.user-points {
+        color: black;
+        font-weight: 800;
+      }
+      &:hover {
+        color: black;
+        background: white;
+        font-weight: 800;
+      }
     }
   }
+  .top-bar-section li:not(.has-form) {
+    ul.dropdown {
+      border: 5px solid black;
+      border-top: 0;
+    }
+  }
+}
+
+.top-bar-section .has-dropdown>a:after {
+  border-color: rgba(0,0,0,1) transparent transparent transparent;
+}
+
+.top-bar .toggle-topbar.menu-icon a span::after {
+  box-shadow: 0 0 0 1px #000, 0 7px 0 1px #000, 0 14px 0 1px #000;
 }
 
 .authform {
