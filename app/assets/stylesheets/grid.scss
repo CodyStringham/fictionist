@@ -18,6 +18,19 @@
         margin: 5px;
         padding: 10px 20px;
       }
+      @media (min-width: 40em) {
+        &.show-icon.locked-block:after {
+          font-family: 'FontAwesome';
+          content: '\f023';
+          font-size: 4em;
+          position: absolute;
+          top: 30px;
+          left: 20px;
+          opacity: 0.5;
+          color: white;
+          text-shadow: 0 0 5px rgba(0,0,0,0.75);
+        }
+      }
     }
     @media (max-width: 40em) {
       .grid-box {
