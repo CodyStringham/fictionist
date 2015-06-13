@@ -2,12 +2,19 @@
   .row
     .large-12.columns
 
-      %h1 Purchase content
-      %p
-        Are you sure you want to purcahse this content for
-        %strong #{@content.value} points?
+      - if current_user && current_user.points > @content.value
+        %h1 Purchase content
+        %p
+          Are you sure you want to purcahse this content for
+          %strong #{@content.value} points?
 
-      = simple_form_for @redemption do |f|
-        = f.submit "Redeem Now", class: 'f-btn-primary'
+        = simple_form_for @redemption do |f|
+          = f.submit "Redeem Now", class: 'f-btn-primary'
+
+      - else
+        %h1 Sorry, you need points to access this :(
+        %p
+          Need help earning points? Just visit the link below to find out how!
+        = link_to "Earn Points", points_path, class: 'f-btn-primary'
 
 
