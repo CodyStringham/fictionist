@@ -2,7 +2,16 @@
   .row
     .large-12.columns
 
+.margin-top-40
+  .row
+    .large-12.columns
       %h1 Edit Content
 
-      = render 'form'
+      - if @content.asset
+        - if @content.asset.content_type == 'image/jpeg'
+          = render 'image_form'
+        - elsif @content.asset_content_type == 'audio/mpeg' || @content.asset_content_type == 'audio/mp3'
+          = render 'music_form'
 
+      - if @content.embed_link
+        = render 'video_form'

@@ -13,8 +13,11 @@
           %a{:href => "#panel3"} Video
       .tabs-content
         #panel1.content.active
+          %h3 Upload a new image
           = render 'image_form'
         #panel2.content
+          %h3 Upload a new song
           = render 'music_form'
         #panel3.content
+          %h3 Upload a new video
           = render 'video_form'
