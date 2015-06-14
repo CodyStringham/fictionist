@@ -6,7 +6,7 @@ $ ->
   $('.notification-container a.close').on 'click', ->
     $(@).parent().fadeOut();
 
-  if $('.notification-panel').is(':visible')
+  if $('.message-panel').is(':visible')
     setTimeout (->
       $('.notification-container .message-panel').fadeOut()
     ), 8000
