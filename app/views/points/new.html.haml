@@ -2,9 +2,12 @@
   .row
     .large-12.columns
 
-      %h1 Request Points for #{@effort.name}
+      %h1 Request Points for #{social_text(@effort)}
       %p= @effort.desc
       %p Please attach a screenshot as proof, we will verify and reward you accordingly.
+
+      .margin-bottom-20
+        = render 'links_to_social', effort: @effort
 
       = render 'form'
 

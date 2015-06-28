@@ -1,0 +1,19 @@
+- if effort.kind == 'facebook_like' || effort.kind == 'facebook_post'
+  = link_to "https://www.facebook.com/fictionistnoise", target: '_blank' do
+    Visit our page
+    %span.fa.fa-facebook.f-btn-primary.icon
+
+- if effort.kind == 'twitter_like' || effort.kind == 'twitter_post'
+  = link_to "https://twitter.com/fictionistnoise", target: '_blank' do
+    Visit our page
+    %span.fa.fa-twitter.f-btn-primary.icon
+
+- if effort.kind == 'instagram_like' || effort.kind == 'instagram_post'
+  = link_to "https://instagram.com/fictionistnoise/", target: '_blank' do
+    Visit our page
+    %span.fa.fa-instagram.f-btn-primary.icon
+
+- if effort.kind == 'youtube_like' || effort.kind == 'youtube_post'
+  = link_to "https://www.youtube.com/user/fictionist3", target: '_blank' do
+    Visit our page
+    %span.fa.fa-youtube.f-btn-primary.icon

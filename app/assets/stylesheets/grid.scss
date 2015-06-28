@@ -22,11 +22,11 @@
         &.show-icon.locked-block:after {
           font-family: 'FontAwesome';
           content: '\f023';
-          font-size: 4em;
+          font-size: 4.5em;
           position: absolute;
-          top: 30px;
-          left: 20px;
-          opacity: 0.5;
+          bottom: 30px;
+          right: 20px;
+          opacity: 0.8;
           color: white;
           text-shadow: 0 0 5px rgba(0,0,0,0.75);
         }
