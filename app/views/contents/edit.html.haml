@@ -10,7 +10,7 @@
       - if @content.asset
         - if @content.asset.content_type == 'image/jpeg'
           = render 'image_form'
-        - elsif @content.asset_content_type == 'audio/mpeg' || @content.asset_content_type == 'audio/mp3'
+        - elsif @content.asset_content_type == 'audio/mpeg' || @content.asset_content_type == 'audio/mp3' || @content.asset_content_type == 'audio/mp4'
           = render 'music_form'
 
       - if @content.embed_link
