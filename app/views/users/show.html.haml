@@ -24,7 +24,7 @@
           #fictionist-grid.transitions-enabled.centered.clearfix
             - current_user.purchased_contents.all.each do |content|
               .box.col2
-                = place_asset(content)
+                = place_asset(content, nil, 'thumb')
 
       - else
         %p You haven't spent any points yet!
